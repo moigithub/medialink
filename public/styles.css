@@ -1,0 +1,103 @@
+body {
+    background-color: #222;
+    color:#eee;
+}
+
+.dropdown-menu > li{
+  display: inline-block;
+ }
+.open> ul {
+    display: inline-flex !important;
+}
+
+.alphanumFilter {
+    margin: 5px;
+    background-color: #337ab7;
+    width:100%;
+}
+
+.sidebar {
+    background-color: #222;
+    color: #eee;
+    padding: 5px;
+}
+
+.sidebar .tags,
+.sidebar .linkTypes,
+.sidebar .categories {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.masVistos {
+    box-sizing: border-box;
+    border: 5px solid #ccc;
+    border-radius: 10px;
+    background-color: #79b8f6;
+    color: #111;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+
+.masVotados {
+    box-sizing: border-box;
+    border: 5px solid #ccc;
+    border-radius: 10px;
+    background-color: #ef3e42;
+    color: #111;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.cuadro {
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    width:100%;
+    position:relative;
+    overflow: hidden;
+}
+.cuadro img {
+    width: 100%;
+}
+.cuadro a {
+    text-decoration:none;
+    
+}
+.cuadro a:hover .playMe{
+    color: #7CFC00;
+}
+
+.cuadrito {
+    box-sizing: border-box;
+    border: 2px solid #333;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    padding:5px;
+    width:100%;
+}
+
+.playMe {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+    background-color: #111;
+    opacity: .6;
+}
+
+.playMe i {
+    font-size: 4.5em;
+    z-index: 9999;
+    display:block;
+    text-align: center;
+}
+
+.list-group li {
+    list-style-type: none;
+}
