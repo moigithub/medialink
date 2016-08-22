@@ -25,7 +25,7 @@ const initialState = {
  //       {_id:1, title:'mono', imageURL:'http://i2.asntown.net/ha/Animals/finger-monkey/finger_monkeys_640_04.jpg', likesCount:4, userId:1},
  //       {_id:2, title:'i dun care', imageURL:'https://s-media-cache-ak0.pinimg.com/236x/04/0b/aa/040baad9f12d5fa530a833055cb8647b.jpg', likesCount:9, userId:1}
         ],
-    linkType:  ["Anime", "Manga", "Serie", "Recipe"],
+    mediaType:  ["Anime", "Manga", "Serie", "Recipe"],
     categ: ["Accion", "Suspenso", "Drama", "Sci-Fi"],
     tag  : ["transformation", "magic", "bones", "ghost"],
     masVistos: data,

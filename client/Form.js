@@ -1,7 +1,8 @@
 'use strict';
-import React, {Component} from 'react';
+import React,{Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 
-export default class AddMediaForm extends Component {
+class AddMediaForm extends Component {
     constructor(props){
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -143,22 +144,14 @@ export default class AddMediaForm extends Component {
                 <div className="form-group row">
                     <label className="control-label col-sm-2" htmlFor="type">Media Type</label>
                     <div className="col-sm-10">
-                        <input type="text" className="form-control" onChange={this.handleChange} id="type" placeholder="Anime or Serie or Documental"/>
-                        <div className="input-group">
+                        {this.props.mediaType.map((media,i)=>(
+                        <div className="input-group" key={"mediaType"+i}>
                             <label className="form-check-inline">
-                              <input className="form-check-input" onChange={this.handleChange} type="radio" name="mediatype" value="Anime" /> Anime
+                              <input className="form-check-input" onChange={this.handleChange} type="radio" name="mediatype" value={media} /> {media}
                             </label>
                         </div>
-                        <div className="input-group">
-                            <label className="form-check-inline">
-                              <input className="form-check-input" onChange={this.handleChange} type="radio" name="mediatype" value="Serie" /> Serie
-                            </label>
-                        </div>
-                        <div className="input-group">
-                            <label className="form-check-inline">
-                              <input className="form-check-input" onChange={this.handleChange} type="radio" name="mediatype" value="Documental" /> Documental
-                            </label>
-                        </div>
+                        ))}
+                        
                     </div>
                  </div>
                 <div className="form-group row">
@@ -242,3 +235,25 @@ export default class AddMediaForm extends Component {
         );
     }
 }
+AddMediaForm.propTypes ={
+    list: PropTypes.arrayOf(PropTypes.string)
+}
+
+function mapStateToProps(state, ownProps){
+    console.log("form media",state);
+    return {
+        mediaType: state.mediaType
+    };
+}
+
+function mapDispatchToProps(dispatch){
+    
+}
+
+//todo
+/*
+ crear un action pa updateListByCateg
+ q guarde las categ-filtros
+ en el store  (component state ?? )
+*/
+export default connect(mapStateToProps)(AddMediaForm);

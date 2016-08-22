@@ -8,7 +8,7 @@ import thunk from 'redux-thunk';
 import { ADD_MEDIA, 
          ADD_TAG, 
          ADD_CATEG, 
-         ADD_LINK_TYPE, 
+         ADD_MEDIA_TYPE, 
          ADD_MAS_VISTOS, 
          ADD_MAS_VOTADOS 
     
@@ -41,9 +41,9 @@ function tagReducer(state=[], action){
     return state;
 }
 
-function linkTypeReducer(state=[], action){
+function mediaTypeReducer(state=[], action){
     switch(action.type){
-        case ADD_LINK_TYPE:
+        case ADD_MEDIA_TYPE:
             return [...state, action.tag];
     }
     return state;
@@ -72,7 +72,7 @@ export default function configureStore(initialState){
             {"media":imageReducer, 
              "tag":tagReducer, 
              "categ":categReducer, 
-             'linkType': linkTypeReducer,
+             'mediaType': mediaTypeReducer,
              'masVistos': masVistosReducer,
              'masVotados': masVotadosReducer
             });

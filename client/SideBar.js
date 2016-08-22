@@ -1,7 +1,7 @@
 'use strict';
 import React,{Component, PropTypes} from 'react';
 
-import LinksListGroup from './LinkTypes';
+import MediaListGroup from './MediaTypes';
 import CategListGroup from './CategList';
 import TagList from './TagsList';
 
@@ -13,7 +13,7 @@ export default class SideBar extends Component {
     render(){
         return (
         <div className="sidebar">
-            <LinksListGroup  changed={this.props.updateListByType}></LinksListGroup>
+            <MediaListGroup  changed={this.props.updateListByType}></MediaListGroup>
             <CategListGroup changed={this.props.updateListByCateg}></CategListGroup>
             <TagList changed={this.props.updateListByTag}></TagList>
         </div>

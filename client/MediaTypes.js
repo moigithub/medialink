@@ -2,9 +2,9 @@
 import React,{Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
-// this component accept a list of linktypes as array of string
+// this component accept a list of mediaTypes as array of string
 // ["Anime", "Manga", "Serie", "Recipe"]
-class LinksListGroup extends Component {
+class MediaListGroup extends Component {
     constructor(props){
         super(props);
         this.resetCheckListGroup = this.resetCheckListGroup.bind(this);
@@ -36,11 +36,11 @@ class LinksListGroup extends Component {
     
     render(){
         return (    
-            <div className="linkTypesList">
+            <div className="mediaTypesList">
                 <h2>Types</h2>
                 <ul className="list-group">
                     {this.state.checkLists.map( (link,i)=>(
-                        <li key={"linkType"+i} className="linkTypeCheck">
+                        <li key={"mediaType"+i} className="mediaTypeCheck">
                             <label> 
                                 <input type="checkbox" onChange={()=>this.toggleCheck(i)} value={link.name} />
                                 {link.name}
@@ -48,15 +48,15 @@ class LinksListGroup extends Component {
                         </li>
                     ))}
 
-                    <li className="linkTypeCheck">
-                        <button id="resetlinktypes" onClick={()=>this.resetCheckListGroup}>Reset</button>
+                    <li className="mediaTypeCheck">
+                        <button id="resetmediaTypes" onClick={()=>this.resetCheckListGroup}>Reset</button>
                     </li>
                 </ul>
             </div>
             );
     }
 }
-LinksListGroup.propTypes ={
+MediaListGroup.propTypes ={
     list: PropTypes.arrayOf(PropTypes.string).isRequired,
     changed: PropTypes.func.isRequired
 }
@@ -64,7 +64,7 @@ LinksListGroup.propTypes ={
 function mapStateToProps(state, ownProps){
     //console.log("categlist",state);
     return {
-        list: state.linkType
+        list: state.mediaType
     };
 }
 
@@ -78,7 +78,7 @@ function mapDispatchToProps(dispatch){
  q guarde las categ-filtros
  en el store  (component state ?? )
 */
-export default connect(mapStateToProps)(LinksListGroup);
+export default connect(mapStateToProps)(MediaListGroup);
 //helpers
 
     // convert array to Array of object with keys {name, selected}
