@@ -13,9 +13,9 @@ export default class SideBar extends Component {
     render(){
         return (
         <div className="sidebar">
-            <LinksListGroup list={this.props.linkType} changed={this.props.updateListByType}></LinksListGroup>
-            <CategListGroup list={this.props.categType} changed={this.props.updateListByCateg}></CategListGroup>
-            <TagList list={this.props.tagList} changed={this.props.updateListByTag}></TagList>
+            <LinksListGroup  changed={this.props.updateListByType}></LinksListGroup>
+            <CategListGroup changed={this.props.updateListByCateg}></CategListGroup>
+            <TagList changed={this.props.updateListByTag}></TagList>
         </div>
         );
     }

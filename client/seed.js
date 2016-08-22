@@ -18,11 +18,9 @@ var data= [
     capitulos: [
       { num: 1,
         nombre: 'capitulo 1',
-        nombreAlternativo: 'boo boo',
         dateAdded: 452453451,
         mirrors: [
           {
-            host: 'youtube',
             link: 'http://youtu.be/asdf23f',
             dateAdded: 452453451,
             brokenStatus: 5,
@@ -30,7 +28,6 @@ var data= [
             enabled: false
           },
           {
-            host: 'mediafire',
             link: 'http://mediafire.com/sf42343f',
             dateAdded: 452453451,
             brokenStatus: 0,
@@ -57,11 +54,9 @@ var data= [
     capitulos: [
       { num: 1,
         nombre: 'capitulo 1',
-        nombreAlternativo: 'je bee',
         dateAdded: 452453451,
         mirrors: [
           {
-            host: 'youtube',
             link: 'http://youtu.be/a13',
             dateAdded: 452453451,
             brokenStatus: 1,
@@ -69,7 +64,6 @@ var data= [
             enabled: true
           },
           {
-            host: 'vimeo',
             link: 'http://vimeo.com/sf42343f',
             dateAdded: 452453451,
             brokenStatus: 3,
@@ -81,10 +75,8 @@ var data= [
       },
       { num: 2,
         nombre: 'capitulo 2',
-        nombreAlternativo: 'noi je bee',
         mirrors: [
           {
-            host: 'vimeo',
             link: 'http://vimeo.com/234fd42f',
             dateAdded: 452453451,
             brokenStatus: 0,
@@ -106,7 +98,6 @@ var capitulos= [
     imageUrl: 'http://placehold.it/64x64',
     numCapitulo: 1,
     nombre: 'capitulo 1',
-    nombreAlternativo: 'boo boo',
     dateAdded: 452453451,
   },
   { animeId: 1,
@@ -114,7 +105,6 @@ var capitulos= [
     imageUrl: 'http://placehold.it/64x64',
     numCapitulo: 1,
     nombre: 'capitulo 1',
-    nombreAlternativo: 'je bee',
     dateAdded: 452453451,
   }  
 ];

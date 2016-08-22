@@ -1,9 +1,10 @@
 'use strict';
 import React,{Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 
 // this component accept a list of linktypes as array of string
 // ["Anime", "Manga", "Serie", "Recipe"]
-export default class CategListGroup extends Component {
+class CategListGroup extends Component {
     constructor(props){
         super(props);
         this.resetCheckListGroup = this.resetCheckListGroup.bind(this);
@@ -54,9 +55,30 @@ export default class CategListGroup extends Component {
     }
 }
 CategListGroup.propTypes ={
-    list: PropTypes.arrayOf(PropTypes.string).isRequired,
+    list: PropTypes.arrayOf(PropTypes.string),
     changed: PropTypes.func.isRequired
 }
+
+function mapStateToProps(state, ownProps){
+    console.log("categlist",state);
+    return {
+        list: state.categ
+    };
+}
+
+function mapDispatchToProps(dispatch){
+    
+}
+
+//todo
+/*
+ crear un action pa updateListByCateg
+ q guarde las categ-filtros
+ en el store  (component state ?? )
+*/
+export default connect(mapStateToProps)(CategListGroup);
+
+
 
 //helpers
 

@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 //import imageReducer from './reducers/imageReducer';
 
 
-import { ADD_MEDIA } from './actions/actionConstants';
+import { ADD_MEDIA, ADD_TAG, ADD_CATEG, ADD_LINK_TYPE } from './actions/actionConstants';
      
 
 function imageReducer(state=[], action){
@@ -16,9 +16,37 @@ function imageReducer(state=[], action){
     return state;
 }
 
+
+function categReducer(state=[], action){
+    switch(action.type){
+        case ADD_CATEG:
+            return [...state, action.categ];
+    }
+    return state;
+}
+
+
+function tagReducer(state=[], action){
+    switch(action.type){
+        case ADD_TAG:
+            return [...state, action.tag];
+    }
+    return state;
+}
+
+function linkTypeReducer(state=[], action){
+    switch(action.type){
+        case ADD_LINK_TYPE:
+            return [...state, action.tag];
+    }
+    return state;
+}
+
+
+
 export default function configureStore(initialState){
     const createStoreWithThunk = applyMiddleware(thunk)(createStore);
-    const allReducers = combineReducers({"media":imageReducer});
+    const allReducers = combineReducers({"media":imageReducer, "tag":tagReducer, "categ":categReducer, 'linkType': linkTypeReducer});
     return createStoreWithThunk(allReducers, initialState);
 }
 

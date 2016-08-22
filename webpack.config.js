@@ -123,7 +123,8 @@ module.exports = {
   devServer: {
         contentBase: isDev? './client' : './public',
         progress: true,
-        colors: true 
+        colors: true ,
+        historyApiFallback: true
     },
   
 //  context: __dirname + "/client",

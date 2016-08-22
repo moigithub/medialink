@@ -1,11 +1,11 @@
 'use strict';
 import React,{Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 
 // this component accept a list of linktypes as array of string
 // ["Anime", "Manga", "Serie", "Recipe"]
 
-
-export default class TagsList extends Component {
+ class TagsList extends Component {
     constructor(props){
         super(props);
     }
@@ -26,9 +26,21 @@ export default class TagsList extends Component {
     }
 }
 TagsList.propTypes ={
-    list: PropTypes.arrayOf(PropTypes.string).isRequired,
+    list: PropTypes.arrayOf(PropTypes.string),
     changed: PropTypes.func.isRequired
 }
 
 //helpers
 
+function mapStateToProps(state, ownProps){
+    console.log("tag list",state);
+    return {
+        list: state.tag
+    };
+}
+
+function mapDispatchToProps(dispatch){
+    
+}
+
+export default connect(mapStateToProps)(TagsList);
