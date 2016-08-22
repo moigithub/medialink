@@ -10,7 +10,6 @@ export default class Wrapper extends Component {
     render(){
         return (
         <div>
-            <h2>BOOOO</h2>
             {this.props.children}
         </div>
         );

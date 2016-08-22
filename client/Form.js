@@ -11,7 +11,9 @@ export default class AddMediaForm extends Component {
         this.addMirror = this.addMirror.bind(this);
         this.handleMirrorLink = this.handleMirrorLink.bind(this);
         this.submitData = this.submitData.bind(this);
+        this.imgError= this.imgError.bind(this);
 
+    
         this.state = {
             mediaimage:'',
             medianame:'',
@@ -103,6 +105,11 @@ export default class AddMediaForm extends Component {
         this.setState({links: newLinks});
     }
     
+    imgError(event){
+      	event.target.src = "https://cdn4.iconfinder.com/data/icons/allicons-basic/512/broken_link-16.png"
+    }
+
+    
     render(){
         return (
             <div className="container">
@@ -119,7 +126,7 @@ export default class AddMediaForm extends Component {
                     <div className="col-sm-8">
                         <input type="text" name="mediaimage" value={this.state.mediaimage} className="form-control" onChange={this.handleChange} id="image" placeholder="Image url"/>
                     </div>
-                    <img className="img-responsive col-sm-2" src="http://placehold.it/200x200"/>
+                    <img className="img-responsive col-sm-2" onError={this.imgError}  src={this.state.mediaimage}/>
                  </div>
                 <div className="form-group row">
                     <label className="control-label col-sm-2" htmlFor="categ">Categories (separated by comma)</label>
