@@ -33,7 +33,7 @@ TagsList.propTypes ={
 //helpers
 
 function mapStateToProps(state, ownProps){
-    console.log("tag list",state);
+    //console.log("tag list",state);
     return {
         list: state.tag
     };

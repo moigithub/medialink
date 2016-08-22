@@ -155,15 +155,10 @@ app.route('/:url(api|auth|components)/*').get(function(req,res){
 //all others resources should redirect to the index.html
 
 
-//app.route('*').get(function(req,res){
-var linktypes=['anime', 'serie', 'documental','recipe','manga','tutorial'];
-var categories = ['accion','suspenso','tecnologia','drama','terror','PG-13','PG','sobrenatural','artes marciales','aventura'];
-var tags = ['wuxia','node','pokemon','monster'];
+app.route('*').get(function(req,res){
 
-// populate db
-require('./seed');
 
-app.get('/',function(req,res){
+//app.get('/*',function(req,res){
   res.render('index');
 });
 

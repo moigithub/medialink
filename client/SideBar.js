@@ -21,9 +21,6 @@ export default class SideBar extends Component {
     }
 }
 SideBar.propTypes ={
-    linkType: PropTypes.arrayOf(PropTypes.string).isRequired,
-    categType: PropTypes.arrayOf(PropTypes.string).isRequired,
-    tagList: PropTypes.arrayOf(PropTypes.string).isRequired,
     updateListByType: PropTypes.func.isRequired,
     updateListByCateg: PropTypes.func.isRequired,
     updateListByTag: PropTypes.func.isRequired,

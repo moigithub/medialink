@@ -5,7 +5,14 @@ import thunk from 'redux-thunk';
 //import imageReducer from './reducers/imageReducer';
 
 
-import { ADD_MEDIA, ADD_TAG, ADD_CATEG, ADD_LINK_TYPE } from './actions/actionConstants';
+import { ADD_MEDIA, 
+         ADD_TAG, 
+         ADD_CATEG, 
+         ADD_LINK_TYPE, 
+         ADD_MAS_VISTOS, 
+         ADD_MAS_VOTADOS 
+    
+} from './actions/actionConstants';
      
 
 function imageReducer(state=[], action){
@@ -42,11 +49,33 @@ function linkTypeReducer(state=[], action){
     return state;
 }
 
+function masVistosReducer(state=[], action){
+    switch(action.type){
+        case ADD_MAS_VISTOS:
+            return [...state, action.tag];
+    }
+    return state;
+}
+
+function masVotadosReducer(state=[], action){
+    switch(action.type){
+        case ADD_MAS_VISTOS:
+            return [...state, action.tag];
+    }
+    return state;
+}
 
 
 export default function configureStore(initialState){
     const createStoreWithThunk = applyMiddleware(thunk)(createStore);
-    const allReducers = combineReducers({"media":imageReducer, "tag":tagReducer, "categ":categReducer, 'linkType': linkTypeReducer});
+    const allReducers = combineReducers(
+            {"media":imageReducer, 
+             "tag":tagReducer, 
+             "categ":categReducer, 
+             'linkType': linkTypeReducer,
+             'masVistos': masVistosReducer,
+             'masVotados': masVotadosReducer
+            });
     return createStoreWithThunk(allReducers, initialState);
 }
 

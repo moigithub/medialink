@@ -60,7 +60,7 @@ CategListGroup.propTypes ={
 }
 
 function mapStateToProps(state, ownProps){
-    console.log("categlist",state);
+    //console.log("categlist",state);
     return {
         list: state.categ
     };

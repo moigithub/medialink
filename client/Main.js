@@ -6,21 +6,12 @@ import MasVistos from './MasVistos';
 import MasVotados from './MasVotados';
 import SideBar from './SideBar';
 
-import {data,capitulos} from './seed';
 
 export default class Main extends Component {
     constructor(props){
         super(props);
         
-        this.state={
-          linkType:  ["Anime", "Manga", "Serie", "Recipe"],
-          categType: ["Accion", "Suspenso", "Drama", "Sci-Fi"],
-          tagList  : ["transformation", "magic", "bones", "ghost"],
-          
-          listaUltimosCapitulos:capitulos,
-          masVistosList: data,
-          masVotadosList: data
-        };
+        this.state={};
     }
     
     updateListByType(checklist){
@@ -40,10 +31,7 @@ export default class Main extends Component {
         return (    
             <div className="row">
                 <div className="col-xs-12 col-lg-2">
-                    <SideBar linkType={this.state.linkType} 
-                            categType={this.state.categType} 
-                            tagList={this.state.tagList}  
-                            updateListByType={this.updateListByType} 
+                    <SideBar updateListByType={this.updateListByType} 
                             updateListByCateg={this.updateListByCateg} 
                             updateListByTag={this.updateListByTag}></SideBar>
                 </div>
@@ -53,8 +41,8 @@ export default class Main extends Component {
                                 <ListaCapitulos></ListaCapitulos>
                             </div>
                             <div className="col-sm-4 col-lg-4">
-                                <MasVistos list={this.state.masVistosList}></MasVistos>
-                                <MasVotados list={this.state.masVotadosList}></MasVotados>
+                                <MasVistos></MasVistos>
+                                <MasVotados></MasVotados>
                             </div>
                         </div>
                     

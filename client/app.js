@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route,  browserHistory, IndexRoute, Redirect} from 'react-router';
 import Main from './Main';
 import AddMediaForm from './Form';
+import Wrapper from './Wrapper';
 
 // const Provider = require('react-redux').Provider
 import { Provider } from 'react-redux';
@@ -17,6 +18,7 @@ import {getDataFromServer} from './actions/mediaActions';
 import configureStore from './Store.js';
 
 ///// STORE ///
+import {data,capitulos} from './seed';
 
 const initialState = {
     media:[
@@ -25,22 +27,25 @@ const initialState = {
         ],
     linkType:  ["Anime", "Manga", "Serie", "Recipe"],
     categ: ["Accion", "Suspenso", "Drama", "Sci-Fi"],
-    tag  : ["transformation", "magic", "bones", "ghost"]
+    tag  : ["transformation", "magic", "bones", "ghost"],
+    masVistos: data,
+    masVotados: data
 };
 
 const Store = configureStore(initialState);
 // dispatch to get initial data from server
 Store.dispatch(getDataFromServer());
 
-
+const Home = () => <h1>Hello from Home!</h1>
 
 /////////////
 
 ReactDOM.render( (
     <Provider store={Store}>
       <Router history={browserHistory}>
-        <Route path="/" component={Main}>
-            <IndexRoute  component={Home}/>
+        <Route path="/" component={Wrapper}>
+            <IndexRoute  component={Main}/>
+            <Route path="capitulos" component={Main} />
             <Route path="home" component={Home} />
             <Route path="newMedia" component={AddMediaForm} />
         </Route>
@@ -57,4 +62,3 @@ ReactDOM.render( (
         <Route path="successLogin" component={SuccessLogin} />
 */
 
-const Home = () => <h1>Hello from Home!</h1>

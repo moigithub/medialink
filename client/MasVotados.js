@@ -1,7 +1,8 @@
 'use strict';
 import React,{Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 
-export default class MasVotados extends Component {
+class MasVotados extends Component {
     constructor(props){
         super(props);
     }
@@ -26,10 +27,22 @@ export default class MasVotados extends Component {
     }
 }
 MasVotados.propTypes ={
-    list: PropTypes.arrayOf(PropTypes.object).isRequired
+    list: PropTypes.arrayOf(PropTypes.object)
 }
 
 //helpers
 
 
 
+function mapStateToProps(state, ownProps){
+    //console.log("tag list",state);
+    return {
+        list: state.masVotados
+    };
+}
+
+function mapDispatchToProps(dispatch){
+    
+}
+
+export default connect(mapStateToProps)(MasVotados);
