@@ -14,18 +14,15 @@ var MediaSchema = new Schema({
     userRate: [{userId: Schema.Types.ObjectId, rating: Number}],  //[{userid:'0', rating: 5}],
     categories: [String], //['accion', 'suspenso'],
     tags: [String], //['uno', 'dos'],
-    linkType: String,
+    mediaType: String,
     likesCounter: Number,
     viewCounter : Number,
     description: String,
     capitulos: [{
         num: Number,
         nombre: String,
-        nombreAlternativo: String,
-        dateAdded: Date,
         mirrors: [
           {
-            host: String,
             link: String,
             dateAdded: Date,
             brokenStatus: Number,

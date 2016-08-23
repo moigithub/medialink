@@ -1,6 +1,7 @@
 'use strict';
 import React,{Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import * as actions from './actions/mediaActions';
 
 class AddMediaForm extends Component {
     constructor(props){
@@ -28,7 +29,7 @@ class AddMediaForm extends Component {
             
             
             links:[
-                { linkName: "Capitulo 1",
+ /*               { linkName: "Capitulo 1",
                   linkUrl:[
                   {
                     link: 'http://youtu.be/asdf23f',
@@ -46,6 +47,7 @@ class AddMediaForm extends Component {
                   }                    
                     ]
                 }
+                */
                 ]
         };
     }
@@ -53,6 +55,9 @@ class AddMediaForm extends Component {
     submitData(e){
         e.preventDefault();
         console.log(JSON.stringify(this.state));
+        
+        //dispatch action
+        this.props.postForm(this.state);
     }
     
     handleMirrorLink(capituloLink, mirrorLink, e){
@@ -247,7 +252,9 @@ function mapStateToProps(state, ownProps){
 }
 
 function mapDispatchToProps(dispatch){
-    
+    return {
+        postForm: (formData)=>{dispatch(actions.PostFormAsync(formData));}
+    };
 }
 
 //todo
@@ -256,4 +263,4 @@ function mapDispatchToProps(dispatch){
  q guarde las categ-filtros
  en el store  (component state ?? )
 */
-export default connect(mapStateToProps)(AddMediaForm);
+export default connect(mapStateToProps,mapDispatchToProps)(AddMediaForm);

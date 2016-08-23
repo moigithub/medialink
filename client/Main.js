@@ -36,15 +36,15 @@ export default class Main extends Component {
                             updateListByTag={this.updateListByTag}></SideBar>
                 </div>
                 <div className="col-xs-12 col-lg-10">
-                        <div className="row">
-                            <div className="col-sm-8 col-lg-8">
-                                <ListaCapitulos></ListaCapitulos>
-                            </div>
-                            <div className="col-sm-4 col-lg-4">
-                                <MasVistos></MasVistos>
-                                <MasVotados></MasVotados>
-                            </div>
+                    <div className="row">
+                        <div className="col-sm-8 col-lg-8">
+                            <ListaCapitulos></ListaCapitulos>
                         </div>
+                        <div className="col-sm-4 col-lg-4">
+                            <MasVistos></MasVistos>
+                            <MasVotados></MasVotados>
+                        </div>
+                    </div>
                     
                 </div>
             </div>
