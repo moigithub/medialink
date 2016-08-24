@@ -2,6 +2,7 @@
 import React,{Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as actions from './actions/mediaActions';
+import * as auth from './clientAuth';
 
 class AddMediaForm extends Component {
     constructor(props){
@@ -80,7 +81,7 @@ class AddMediaForm extends Component {
                             {  return{ link:link,
                                 dateAdded: new Date(),
                                 brokenStatus: 0,
-                                userID: '14324',
+                                userID: this.props.user.userId,
                                 enabled: true}
                             }
                         )});
@@ -106,7 +107,7 @@ class AddMediaForm extends Component {
         newLinks[capituloIndex].linkUrl.push({link:'',
                                 dateAdded: new Date(),
                                 brokenStatus: 0,
-                                userID: '14324',
+                                userID: this.props.user.userId,
                                 enabled: true});
         this.setState({links: newLinks});
     }
@@ -247,7 +248,7 @@ AddMediaForm.propTypes ={
 function mapStateToProps(state, ownProps){
     console.log("form media",state);
     return {
-        mediaType: state.mediaType
+        mediaType: state.mediaType,  user:auth.getCurrentUser()
     };
 }
 
