@@ -50,7 +50,9 @@ export const getCurrentUser=function(){
 };
 
 export const isLoggedIn=function(){
-    return !!localStorage.token;
+    return true; /////////temporal
+    
+    //return !!localStorage.token;
     /*;
     $.get("/api/users/isLogged")
         .done((data)=>{

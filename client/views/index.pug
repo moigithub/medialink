@@ -20,7 +20,7 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a(class='navbar-brand', href='#') MediaTECA
+          a(class='navbar-brand', href='/') MediaTECA
 
         div(class="collapse navbar-collapse" id="navbar-collapse")
           ul(class="nav navbar-nav")
@@ -28,6 +28,8 @@ html
               a(href="#") my Saw list
             li
               a(href="#") to See list
+            li
+              a(href="#") my Media List
             li
               a(href="/newMedia") Add New Media
 
@@ -43,14 +45,6 @@ html
               a(href="/logout") Log Out
             li
               a(href="/signup") Sign Up
-    .container-fluid
-      .row
-        - var alphanum = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split("");
-        div.btn-group.alphanumFilter(data-toggle="buttons")
-          each value in alphanum
-            label(class="btn btn-primary") #{value}
-              input(type="checkbox" name="alphanum[]" checked autocomplete="off") 
-          a(class="btn btn-primary" href="#" id="resetalphanum") Reset
           
     #app
 
