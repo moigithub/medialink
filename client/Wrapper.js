@@ -1,5 +1,7 @@
 'use strict';
 import React,{Component, PropTypes} from 'react';
+import MenuBar from './MenuBar';
+import AZMenu from'./AZMenu';
 
 export default class Wrapper extends Component {
     constructor(props){
@@ -10,6 +12,8 @@ export default class Wrapper extends Component {
     render(){
         return (
         <div>
+            <MenuBar />
+            <AZMenu />
             {this.props.children}
         </div>
         );
