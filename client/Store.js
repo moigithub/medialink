@@ -5,7 +5,8 @@ import thunk from 'redux-thunk';
 //import imageReducer from './reducers/imageReducer';
 
 
-import { ADD_MEDIA, 
+import { ADD_MEDIA,
+         ADD_MEDIA_LINK, 
          ADD_TAG, 
          ADD_CATEG, 
          ADD_MEDIA_TYPE, 
@@ -15,10 +16,19 @@ import { ADD_MEDIA,
 } from './actions/actionConstants';
      
 
-function imageReducer(state=[], action){
+function mediaReducer(state=[], action){
     switch(action.type){
         case ADD_MEDIA:
             return [...state, action.media];
+    }
+    return state;
+}
+
+
+function mediaLinkReducer(state=[], action){
+    switch(action.type){
+        case ADD_MEDIA_LINK:
+            return [...state, action.mediaLink];
     }
     return state;
 }
@@ -69,7 +79,8 @@ function masVotadosReducer(state=[], action){
 export default function configureStore(initialState){
     const createStoreWithThunk = applyMiddleware(thunk)(createStore);
     const allReducers = combineReducers(
-            {"media":imageReducer, 
+            {"media":mediaReducer, 
+             "mediaLink":mediaLinkReducer,
              "tag":tagReducer, 
              "categ":categReducer, 
              'mediaType': mediaTypeReducer,

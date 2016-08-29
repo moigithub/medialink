@@ -12,8 +12,8 @@ export default class Wrapper extends Component {
     render(){
         return (
         <div>
-            <MenuBar />
-            <AZMenu />
+            <MenuBar></MenuBar >
+            <AZMenu></AZMenu >
             {this.props.children}
         </div>
         );

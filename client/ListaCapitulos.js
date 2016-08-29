@@ -14,7 +14,7 @@ class ListaCapitulos extends Component {
                 {this.props.list.map((media,i)=>(
                     <div className="col-xs-6 col-sm-4 col-lg-3" key={"media"+i}>
                         <div className="cuadro">
-                            <a className="enlace" href={"/"+media.title+"/capitulo/"+media.capitulo}>
+                            <a className="enlace" href={"/"+media.title+"/"+media.capitulo}>
                                 <h3 className="titulo">{media.title}</h3>
                                 <h4 className="capitulo">{media.capitulo}</h4>
                                 <img className="img-responsive" src={media.imageUrl}/>
@@ -37,9 +37,9 @@ ListaCapitulos.propTypes ={
 
 
 function mapStateToProps(state, ownProps){
-    //console.log(state);
+    console.log(state);
     return {
-        list: state.media
+        list: state.mediaLink
     };
 }
 /*

@@ -28,7 +28,6 @@ class AddMediaForm extends Component {
             linkName:'',
             linkUrl:'',
             
-            
             links:[
  /*               { linkName: "Capitulo 1",
                   linkUrl:[
@@ -254,7 +253,7 @@ function mapStateToProps(state, ownProps){
 
 function mapDispatchToProps(dispatch){
     return {
-        postForm: (formData)=>{dispatch(actions.PostFormAsync(formData));}
+        postForm: (formData)=>{dispatch(actions.PostFormAsync(formData, auth.getCurrentUser().userId));}
     };
 }
 

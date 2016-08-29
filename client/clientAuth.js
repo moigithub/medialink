@@ -6,6 +6,11 @@ import {  browserHistory } from 'react-router';
 var user = {};  // is stored on client, so not affecting multiple users from diff part of world
 
 
+user={userId:123, userName:"hIGADOO"}; ////////// temporal
+if (user.userId) localStorage.token = ".";
+localStorage.userData = JSON.stringify(user);
+
+
 export const login =function(cb){
     $.get("/api/users/")
         .done((data)=>{
@@ -42,17 +47,13 @@ export const logout=function(cb){
 export const getCurrentUser=function(){
     user = JSON.parse(localStorage.userData||"{}");
     
-    
-    user={userId:123}; ////////// temporal
-    
     return user;
     // deberia recuperar data from localStorage, to prevent lost when refresh
 };
 
 export const isLoggedIn=function(){
-    return true; /////////temporal
-    
-    //return !!localStorage.token;
+console.log("loggedin",  !!localStorage.token);
+    return !!localStorage.token;
     /*;
     $.get("/api/users/isLogged")
         .done((data)=>{

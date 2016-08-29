@@ -6,12 +6,13 @@ var data= [
     title: 'el Titulo1', 
     whichUserIDPosted: 'yoni123',
     imageUrl: 'http://placehold.it/200x200',
+    dateAdded: 452453451,
     lastUpdated: 123123123,
     shouldUpdate: false,
     userRate: [{userid:'0', rating: 5}],
     categories: ['accion', 'suspenso'],
     tags: ['uno', 'dos'],
-    linkType: 'anime',
+    mediaType: 'anime',
     likesCounter: 123,
     viewCounter : 43545,
     description: 'lorem ipsum bla bla me',
@@ -22,15 +23,15 @@ var data= [
         mirrors: [
           {
             link: 'http://youtu.be/asdf23f',
-            dateAdded: 452453451,
             brokenStatus: 5,
+            dateAdded: 452453451,
             userID: '14324',
             enabled: false
           },
           {
             link: 'http://mediafire.com/sf42343f',
-            dateAdded: 452453451,
             brokenStatus: 0,
+            dateAdded: 452453451,
             userID: '14324',
             enabled: true
           }
@@ -43,11 +44,12 @@ var data= [
     whichUserIDPosted: 'yoni123',
     imageUrl: 'http://placehold.it/200x200',
     lastUpdated: 123123123,
+    dateAdded: 452453451,
     shouldUpdate: false,
     userRate: [{userid:'0', rating: 2}],
     categories: ['drama', 'terror'],
     tags: ['uno', 'tres'],
-    linkType: 'serie',
+    mediaType: 'serie',
     likesCounter: 13,
     viewCounter : 445,
     description: 'boo baa mee nuu lorem ipsum bla bla me',
@@ -58,15 +60,15 @@ var data= [
         mirrors: [
           {
             link: 'http://youtu.be/a13',
-            dateAdded: 452453451,
             brokenStatus: 1,
+            dateAdded: 452453451,
             userID: '14324',
             enabled: true
           },
           {
             link: 'http://vimeo.com/sf42343f',
-            dateAdded: 452453451,
             brokenStatus: 3,
+            dateAdded: 452453451,
             userID: '14324',
             enabled: true
           }
@@ -75,11 +77,12 @@ var data= [
       },
       { num: 2,
         nombre: 'capitulo 2',
+        dateAdded: 452453451,
         mirrors: [
           {
             link: 'http://vimeo.com/234fd42f',
-            dateAdded: 452453451,
             brokenStatus: 0,
+            dateAdded: 452453451,
             enabled: true
           }
         ]  //mirrors

@@ -2,12 +2,13 @@
 
 import React, {Component} from 'react';
 
-export class AZMenu extends Component {
+export default class AZMenu extends Component {
+    
     render(){
         var alphanum = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split("");
         var botones=alphanum.map((b,i)=>(
             <label className="btn btn-primary" key={"btnaz"+i}> {b} 
-              <input type="checkbox" name="alphanum[]" checked autocomplete="off"/>
+              <input type="checkbox" name="alphanum[]" checked="true" autocomplete="off"/>
             </label>
         ));
         return (

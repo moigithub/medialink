@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+var moment = require('moment');
 var router = express.Router();
 var Media = require('./media.model');
 //var isLoggedIn = require('../auth').isLoggedIn;
@@ -13,6 +14,35 @@ router.get('/', function(req, res) {
     });
 });
 
+
+router.get('/latestMediaLink', function(req, res) {
+  /*
+    Media.find(function (err, media) {
+        if(err) { return handleError(res, err); }
+        console.log("medialink");
+        return res.status(200).json(media);
+    });
+ */   
+ console.log(moment().subtract(7, 'days'));
+    Media.aggregate( [ 
+ //       { $match: { "dateAdded":{ $gt: moment().subtract(7, 'days')}}},
+         { $unwind : "$capitulos" },
+         { $project : {
+              title : 1,
+              imageUrl: 1,
+              //capitulos : 1,
+              //"capitulos.dateAdded" : 1,
+              capitulo : "$capitulos.nombre",
+              dateAdded: "$capitulos.dateAdded"
+        }},
+        { $sort : { "capitulo" : -1 } },
+        { $limit : 10 }
+      ] , function(err, media) {
+        if(err) { return handleError(res, err); }
+        console.log(media);
+        return res.status(200).json(media);
+      });
+});
 /*
 // media by user
 router.get('/user/:id', isLoggedIn, function(req, res) {
@@ -30,6 +60,7 @@ router.post('/',  function(req, res) {
       title: '', 
       whichUserIDPosted: '',
       imageUrl: '',
+      dateAdded: new Date(),
       lastUpdated: new Date(),
       shouldUpdate: true,
       userRate: [],  //[{userid:'0', rating: 5}],
