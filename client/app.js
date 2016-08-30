@@ -5,6 +5,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route,  browserHistory, IndexRoute, Redirect} from 'react-router';
 import Main from './Main';
+import MediaList from './MediaList';
+import VerMedia from './VerMedia';
 import AddMediaForm from './Form';
 import Wrapper from './Wrapper';
 
@@ -48,6 +50,8 @@ ReactDOM.render( (
         <Route path="/" component={Wrapper}>
             <IndexRoute  component={Main}/>
             <Route path="capitulos" component={Main} />
+            <Route path="media(/:userid)" component={MediaList} />
+            <Route path="vermedia(/:mediaName)" component={VerMedia} />
             <Route path="home" component={Home} />
             <Route path="newMedia" component={AddMediaForm} />
         </Route>

@@ -24,7 +24,7 @@ export default class MenuBar extends Component {
                   <ul className="nav navbar-nav">
                     <li><a href="#"> my Saw list</a></li>
                     <li><a href="#"> to See list</a></li>
-                    <li><a href="#"> my Media List</a></li>
+                    <li><a href="/vermedia/me"> my Media List</a></li>
                     <li><Link to={`/newMedia`}>Add New Media</Link></li>
                   </ul>
                 }

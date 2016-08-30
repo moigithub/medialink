@@ -3,7 +3,7 @@ import React,{Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as auth from './clientAuth';
 
-class MediaList extends Component {
+class VerMedia extends Component {
     constructor(props){
         super(props);
     }
@@ -12,7 +12,7 @@ class MediaList extends Component {
         return (    
             <div className="row">
                 <div className="list">
-                {this.props.list.map((media,i)=>(
+                {this.props.media.map((media,i)=>(
                     <div className="col-xs-6 col-sm-4 col-lg-3">
                         <div className="cuadro">
                             <a className="enlace" href={"/vermedia/"+media.title}>
@@ -31,24 +31,26 @@ class MediaList extends Component {
             );
     }
 }
-MediaList.propTypes ={
-    list: PropTypes.arrayOf(PropTypes.object).isRequired
+VerMedia.propTypes ={
+    media: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 //helpers
 
-function filter(medias, filter, uid){
+function filter(medias, mediaName){
+    console.log(mediaName);
     //console.log("filter form imagelist withRouter", filter, images , uid);
-    if(filter.toLowerCase()=="me"){ return medias.filter(media=>media.whichUserIDPosted===uid); }
-    return medias;
+    if(mediaName!==""){ return medias.filter(media=>media.title===mediaName); }
+    return medias;  // TODO:: return empty media ???
 }
 
 /// ownProps.params.userid
 function mapStateToProps(state, ownProps){
-    console.log(state, "ownprops",ownProps, "userid",auth.getCurrentUser().userId);
+    console.log(state, "ownprops",ownProps);
     
     return {
-        list: filter(state.media, ownProps.params.userid|| "all", auth.getCurrentUser().userId)
+        //list: filter(state.media, ownProps.params.userid|| "all", auth.getCurrentUser().userId)
+        media: filter(state.media, decodeURIComponent(ownProps.params.mediaName))
     };
 }
 /*
@@ -59,4 +61,4 @@ function mapDispatchToProps(dispatch){
 }
 */
 
-export default connect(mapStateToProps)(MediaList);
+export default connect(mapStateToProps)(VerMedia);
