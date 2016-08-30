@@ -15,7 +15,7 @@ class MediaList extends Component {
                 {this.props.list.map((media,i)=>(
                     <div className="col-xs-6 col-sm-4 col-lg-3">
                         <div className="cuadro">
-                            <a className="enlace" href={"/vermedia/"+media.title}>
+                            <a className="enlace" href={"/mediainfo/"+media.title}>
                                 <h3 className="titulo">{media.title}</h3>
                                 <img className="img-responsive" src={media.imageUrl}/>
                                 <div className="playMe">
