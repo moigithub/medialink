@@ -12,7 +12,7 @@ class MediaInfo extends Component {
         return (    
             <div className="list">
                 {this.props.media.map((media,i)=>(
-                <div className="row">
+                <div className="row" key={"media"+i}>
                     <div className="col-xs-4 col-sm-3 col-lg-2">
                         <h3 className="titulo">{media.title}</h3>
                         <img className="img-responsive" src={media.imageUrl}/>

@@ -7,6 +7,7 @@ import { Router, Route,  browserHistory, IndexRoute, Redirect} from 'react-route
 import Main from './Main';
 import MediaList from './MediaList';
 import MediaInfo from './MediaInfo';
+import VerMedia from './VerMedia';
 import AddMediaForm from './Form';
 import Wrapper from './Wrapper';
 
@@ -52,7 +53,7 @@ ReactDOM.render( (
             <Route path="capitulos" component={Main} />
             <Route path="media(/:userid)" component={MediaList} />
             <Route path="mediainfo(/:mediaName)" component={MediaInfo} />
-            <Route path="home" component={Home} />
+            <Route path="vermedia(/:mediaName)(/:mediaLink)" component={VerMedia} />
             <Route path="newMedia" component={AddMediaForm} />
         </Route>
       </Router>

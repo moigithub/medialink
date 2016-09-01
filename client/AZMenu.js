@@ -3,12 +3,15 @@
 import React, {Component} from 'react';
 
 export default class AZMenu extends Component {
+    handleChange(){}
+    
+    resetButtons(){}
     
     render(){
         var alphanum = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split("");
         var botones=alphanum.map((b,i)=>(
             <label className="btn btn-primary" key={"btnaz"+i}> {b} 
-              <input type="checkbox" name="alphanum[]" checked="true" autocomplete="off"/>
+              <input type="checkbox" name="alphanum[]" checked="true" onChange={this.handleChange} autoComplete="off"/>
             </label>
         ));
         return (
@@ -17,7 +20,7 @@ export default class AZMenu extends Component {
                     
                     <div className="btn-group alphanumFilter" data-toggle="buttons">
                       {botones}
-                      <a className="btn btn-primary" href="#" id="resetalphanum"> Reset</a>
+                      <a className="btn btn-primary" href="#" onClick = {this.resetButtons} id="resetalphanum"> Reset</a>
                     </div>
                 </div>
             </div>
