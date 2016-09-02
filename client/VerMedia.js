@@ -8,12 +8,17 @@ MUESTRA EL LINK CON TODOS SUS MIRRORS
 class VerMedia extends Component {
     constructor(props){
         super(props);
+        this.setMirrorUrl = this.setMirrorUrl.bind(this);
+    }
+    
+    setMirrorUrl(url){
+        console.log("setMirrorUrl",url);
     }
     
     render(){
         const {media, mediaLink} = this.props;
         const mirrors = getMirrors(media, mediaLink) ||[];
-        console.log("render mirror",mirrors);
+        //console.log("render mirror",mirrors);
         return (    
             <div className="list">
                 {media && media.title  && <div className="row">
@@ -36,12 +41,12 @@ class VerMedia extends Component {
                         </div>
                         }
                         <div id="listaCapitulos">
-                            {!!mirrors && <ul>
+                            <h3>Mirror List</h3>
+                            {!!mirrors && <ul className="list-group">
                                 {mirrors.map((mirror,i)=>(
-                                    <li key={"mirror"+i}>
-                                        <a href={"/playMedia/"+mirror.link}>{mirror.link}</a>
-                                        - posted by: <span className="user">{mirror.userID}</span> 
-                                        <button className="btn btn-danger">Report broken</button>
+                                    <li onClick={this.setMirrorUrl.bind(this,mirror.link)} key={"mirror"+i} className="list-group-item list-group-item-info">{mirror.link}
+                                    &nbsp; - posted by: <span className="user">{mirror.userID}</span> 
+                                    <button className="btn btn-danger btn-xs pull-right">Report broken</button>
                                     </li>
                                 ))}
                             </ul>
