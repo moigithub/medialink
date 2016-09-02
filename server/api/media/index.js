@@ -23,7 +23,7 @@ router.get('/latestMediaLink', function(req, res) {
         return res.status(200).json(media);
     });
  */   
- console.log(moment().subtract(7, 'days'));
+ //console.log(moment().subtract(7, 'days'));
     Media.aggregate( [ 
  //       { $match: { "dateAdded":{ $gt: moment().subtract(7, 'days')}}},
          { $unwind : "$capitulos" },
@@ -39,7 +39,7 @@ router.get('/latestMediaLink', function(req, res) {
         { $limit : 10 }
       ] , function(err, media) {
         if(err) { return handleError(res, err); }
-        console.log(media);
+        //console.log(media);
         return res.status(200).json(media);
       });
 });
@@ -74,7 +74,7 @@ router.post('/',  function(req, res) {
     };
     
     var mediaData = Object.assign({}, obj, req.body);
-    console.log("post image create",mediaData);
+    //console.log("post image create",mediaData);
     Media.create(mediaData, function(err, media) {
         if(err) { return handleError(res, err); }
         return res.status(201).json(media);

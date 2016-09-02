@@ -38,12 +38,13 @@ MediaList.propTypes ={
 //helpers
 
 function filter(medias, filter, uid){
-    //console.log("filter form imagelist withRouter", filter, images , uid);
+    console.log("filter form imagelist withRouter", filter);
     let whoMedia =filter.toLowerCase().trim();
     if (whoMedia==="me")
         return medias.filter(media=>media.whichUserIDPosted===uid);
-    else if(whoMedia !== "")
+    else if(whoMedia !== "all" && whoMedia !== "")
         return medias.filter(media=>media.whichUserIDPosted===whoMedia)
+    console.log("alllll medias medialist");
     return medias;
 }
 
