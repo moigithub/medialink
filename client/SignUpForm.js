@@ -1,5 +1,5 @@
 'use strict';
-import {Component} from 'react';
+import React,{Component} from 'react';
 import {connect} from 'react-redux';
 
 class SignUpForm extends Component {
@@ -7,10 +7,13 @@ class SignUpForm extends Component {
         super(props);
         
         this.state={
-            email:''
+            email:'',
+            password:'',
+            confirm:''
         };
         
         this.handleChange = this.handleChange.bind(this);
+        this.submitData = this.submitData.bind(this);
     }
     
     handleChange(e){
@@ -31,6 +34,7 @@ class SignUpForm extends Component {
     render(){
         return (
             <div className="container">
+                <h3>Register</h3>
                 <form>
                     <div className="form-group row">
                         <label className="control-label col-sm-2" htmlFor="email">e-Mail</label>
@@ -47,7 +51,7 @@ class SignUpForm extends Component {
                     <div className="form-group row">
                         <label className="control-label col-sm-2" htmlFor="confirm">Confirm password</label>
                         <div className="col-sm-10">
-                            <input type="text" name="confirmPassword" value={this.state.confirm} className="form-control" onChange={this.handleChange} id="confirm" placeholder="re-enter password"/>
+                            <input type="text" name="confirm" value={this.state.confirm} className="form-control" onChange={this.handleChange} id="confirm" placeholder="re-enter password"/>
                         </div>
                      </div>
                      <button type="submit" onClick={this.submitData}>Submit</button>
