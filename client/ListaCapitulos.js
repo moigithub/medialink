@@ -1,6 +1,7 @@
 'use strict';
 import React,{Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 class ListaCapitulos extends Component {
     constructor(props){
@@ -14,14 +15,14 @@ class ListaCapitulos extends Component {
                 {this.props.list.map((media,i)=>(
                     <div className="col-xs-6 col-sm-4 col-lg-3" key={"media"+i}>
                         <div className="cuadro">
-                            <a className="enlace" href={"/verMedia/"+media.title+"/"+media.capitulo}>
+                            <Link to={"/verMedia/"+media.title+"/"+media.capitulo} className="enlace">
                                 <h3 className="titulo">{media.title}</h3>
                                 <h4 className="capitulo">{media.capitulo}</h4>
                                 <img className="img-responsive" src={media.imageUrl}/>
                                 <div className="playMe">
                                     <i className="fa fa-play-circle" aria-hidden="true"></i>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 

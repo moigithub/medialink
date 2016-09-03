@@ -27,9 +27,9 @@ passport.deserializeUser(function(id, done) {
 // =========================================================================
 passport.use(new TwitterStrategy({
 
-    consumerKey     : process.env.consumerKey || "VFdzIHhFl6pJuqusZT69MZqrJ",
-    consumerSecret  : process.env.consumerSecret||"5wD3whpreRxSHIG3bmSQc56LuxwnmEUhoa4tEYf1oHOb9HAJXf",
-    callbackURL     : process.env.callbackURL|| "https://albumreact-moisesman.c9users.io/auth/twitter/callback"
+    consumerKey     : process.env.consumerKey || "8g6QEY4GmKt30xDHA5EdehRdT",
+    consumerSecret  : process.env.consumerSecret||"DDp5Cy4NOS16vriZ19akSGstW9lLnynrCgAubyHSUNNHCF2Ki3",
+    callbackURL     : process.env.callbackURL|| "http://mediateca-moisesman.c9users.io/auth/twitter/callback"
 
     },
     function(token, tokenSecret, profile, done) {
@@ -97,7 +97,9 @@ router
 //    session: false
   }))
 
-
+  .get('/signup',function(req,res){
+      
+  })
   .get('/logout', function(req, res) {
         req.logout();
         res.redirect('/successLogout');

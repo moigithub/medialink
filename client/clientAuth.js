@@ -5,11 +5,11 @@ import {  browserHistory } from 'react-router';
 
 var user = {};  // is stored on client, so not affecting multiple users from diff part of world
 
-
+/*
 user={userId:"123", userName:"hIGADOO"}; ////////// temporal
 if (user.userId) localStorage.token = ".";
 localStorage.userData = JSON.stringify(user);
-
+*/
 
 export const login =function(cb){
     $.get("/api/users/")

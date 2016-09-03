@@ -2,6 +2,7 @@
 import React,{Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as auth from './clientAuth';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 class MediaInfo extends Component {
     constructor(props){
@@ -10,7 +11,7 @@ class MediaInfo extends Component {
     
     render(){
         return (    
-            <div className="list">
+            <div className="list container">
                 {this.props.media.map((media,i)=>(
                 <div className="row" key={"media"+i}>
                     <div className="col-xs-4 col-sm-3 col-lg-2">
@@ -28,9 +29,10 @@ class MediaInfo extends Component {
                         <p><span className="strong">Rating:</span> {media.userRate.length} *calc avg of user rates*</p>
 
                         <div id="listaCapitulos">
-                            <ul>
+                            <h3>List</h3>
+                            <ul className="list-group">
                                 {media.capitulos.map((cap,i)=>(
-                                    <li key={"capitulo"+i}><a href={"/verMedia/"+media.title+"/"+cap.nombre}>{cap.nombre}</a></li>
+                                    <li key={"capitulo"+i} className="list-group-item list-group-item-info"><Link to={"/verMedia/"+media.title+"/"+cap.nombre}>{cap.nombre}</Link></li>
                                 ))}
                             </ul>
                         </div>
@@ -50,7 +52,7 @@ MediaInfo.propTypes ={
 //helpers
 
 function filter(medias, mediaName){
-    console.log(mediaName);
+    //console.log(mediaName);
     //console.log("filter form imagelist withRouter", filter, images , uid);
     if(mediaName!==""){ return medias.filter(media=>media.title===mediaName); }
     return medias;  // TODO:: return empty media ???
@@ -58,7 +60,7 @@ function filter(medias, mediaName){
 
 /// ownProps.params.userid
 function mapStateToProps(state, ownProps){
-    console.log(state, "ownprops",ownProps);
+    //console.log(state, "ownprops",ownProps);
     
     return {
         //list: filter(state.media, ownProps.params.userid|| "all", auth.getCurrentUser().userId)

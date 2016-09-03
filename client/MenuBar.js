@@ -24,7 +24,7 @@ export default class MenuBar extends Component {
                   <ul className="nav navbar-nav">
                     <li><a href="#"> my Saw list</a></li>
                     <li><a href="#"> to See list</a></li>
-                    <li><a href="/media/me"> my Media List</a></li>
+                    <li><Link to="/media/me"> my Media List</Link></li>
                     <li><Link to={`/newMedia`}>Add New Media</Link></li>
                   </ul>
                 }
@@ -36,13 +36,13 @@ export default class MenuBar extends Component {
                   </form>
                   { !auth.isLoggedIn() ?
                   <ul className="nav navbar-nav navbar-right">
-                    <li><a className="navbar-link" href="/login"> Login</a></li>
-                    <li><a className="navbar-link" href="/signup"> Sign Up</a></li>
+                    <li><a className="navbar-link" href="/auth/twitter">Login with Twitter</a></li>
+                    <li><Link to="/signup" className="navbar-link"> Sign Up</Link></li>
                   </ul>
                   :
                   <ul className="nav navbar-nav navbar-right">
                     <li className="navbar-text">Welcome <span>{auth.getCurrentUser().userName}</span></li>
-                    <li><a className="navbar-link" href="/logout"> Log Out</a></li>
+                    <li><a className="navbar-link" href="/auth/logout"> Log Out</a></li>
                   </ul>
                   }
                 </div>
