@@ -38,7 +38,7 @@ ListaCapitulos.propTypes ={
 
 
 function mapStateToProps(state, ownProps){
-    console.log(state);
+    //console.log(state);
     return {
         list: state.mediaLink
     };

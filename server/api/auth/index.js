@@ -92,7 +92,7 @@ router
   .get('/twitter', passport.authenticate('twitter'))
 
   .get('/twitter/callback', passport.authenticate('twitter', {
-    successRedirect: '/successLogin',
+    successRedirect: '/',
     failureRedirect: '/'
 //    session: false
   }))
@@ -102,7 +102,7 @@ router
   })
   .get('/logout', function(req, res) {
         req.logout();
-        res.redirect('/successLogout');
+        res.redirect('/');
     });
     
     

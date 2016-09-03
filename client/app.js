@@ -16,7 +16,7 @@ import SignUpForm from './SignUpForm';
 import { Provider } from 'react-redux';
 import {getMediaDataFromServer ,getLatestMediaLinksDataFromServer} from './actions/mediaActions';
 
-//import * as auth from './clientAuth';
+import * as auth from './clientAuth';
 
 
 import configureStore from './Store.js';
@@ -44,6 +44,12 @@ Store.dispatch(getLatestMediaLinksDataFromServer());
 
 const Home = () => <h1>Hello from Home!</h1>
 
+console.log("app.js window_user", window.__USER__);
+if(window.__USER__) {
+    auth.setUser(JSON.parse(window.__USER__));
+} else {
+    auth.setUser(null);
+}
 /////////////
 
 ReactDOM.render( (

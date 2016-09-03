@@ -157,9 +157,9 @@ app.route('/:url(api|auth|components)/*').get(function(req,res){
 
 app.route('*').get(function(req,res){
 
-
+console.log("is logged??",req.user);
 //app.get('/*',function(req,res){
-  res.render('index');
+  res.render('index', {user:  JSON.stringify(req.user)});
 });
 
 

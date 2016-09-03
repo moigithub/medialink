@@ -11,6 +11,23 @@ if (user.userId) localStorage.token = ".";
 localStorage.userData = JSON.stringify(user);
 */
 
+export const setUser = function(data,cb){
+    console.log("auth setUser",data);
+    if(data){
+        user = data.twitter;
+        user.userId = data._id;
+        localStorage.token = data._id;
+        localStorage.userData = JSON.stringify(user);
+       // console.log("auth login",user);
+        //this.setState({user: JSON.stringify(data)});
+    } else {
+        user={};
+        delete localStorage.token;
+        delete localStorage.userData;
+    }
+    if(cb) cb();
+}
+
 export const login =function(cb){
     $.get("/api/users/")
         .done((data)=>{
