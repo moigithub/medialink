@@ -51,6 +51,22 @@ if(window.__USER__) {
     auth.setUser(null);
 }
 /////////////
+function requireAuth(nextState, replace) {
+    console.log("route requireauth",Store.getState());
+  if (!auth.isLoggedIn()) {
+      /*
+    replace({
+      pathname: '/auth/twitter' // only work if auth/twiter if part of <Route> list
+    })
+    */
+    window.location = "/";
+    //alert("not logged");
+    
+    
+    //router.replace({ pathname, query, state }) // new "location descriptor"
+     
+  }
+}
 
 ReactDOM.render( (
     <Provider store={Store}>
@@ -61,7 +77,7 @@ ReactDOM.render( (
             <Route path="media(/:userid)" component={MediaList} />
             <Route path="mediainfo(/:mediaName)" component={MediaInfo} />
             <Route path="vermedia(/:mediaName)(/:mediaLink)" component={VerMedia} />
-            <Route path="newMedia" component={AddMediaForm} />
+            <Route path="newMedia" component={AddMediaForm}   onEnter={requireAuth}  />
             <Route path="signup" component={SignUpForm} />
         </Route>
       </Router>

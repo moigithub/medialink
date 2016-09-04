@@ -6,7 +6,7 @@ import * as auth from './clientAuth';
 
 export default class MenuBar extends Component {
     render(){
-    console.log(auth.getCurrentUser().userName);
+    console.log(auth.getCurrentUser());
         return (
             <div className="nav navbar navbar-inverse">
               <div className="container-fluid">
@@ -17,7 +17,7 @@ export default class MenuBar extends Component {
                     <span className="icon-bar"></span>
                     <span className="icon-bar"></span>
                   </button>
-                  <a className='navbar-brand' href='/'> MediaTECA</a>
+                  <Link to='/' className='navbar-brand'> MediaTECA</Link>
                 </div>
                 <div className="collapse navbar-collapse" id="navbar-collapse">
                 { auth.isLoggedIn() &&
@@ -41,7 +41,7 @@ export default class MenuBar extends Component {
                   </ul>
                   :
                   <ul className="nav navbar-nav navbar-right">
-                    <li className="navbar-text">Welcome <span>{auth.getCurrentUser().userName}</span></li>
+                    <li className="navbar-text">Welcome <span>{auth.getCurrentUser().displayName}</span></li>
                     <li><a className="navbar-link" href="/auth/logout"> Log Out</a></li>
                   </ul>
                   }
