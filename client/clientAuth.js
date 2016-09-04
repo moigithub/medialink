@@ -14,7 +14,7 @@ localStorage.userData = JSON.stringify(user);
 export const setUser = function(data,cb){
     console.log("auth setUser",data);
     if(data){
-        user = data.twitter;
+        user = data.twitter || data.facebook || data.local;
         user.userId = data._id;
         localStorage.token = data._id;
         localStorage.userData = JSON.stringify(user);

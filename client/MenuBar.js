@@ -37,7 +37,9 @@ export default class MenuBar extends Component {
                   { !auth.isLoggedIn() ?
                   <ul className="nav navbar-nav navbar-right">
                     <li><a className="navbar-link" href="/auth/twitter">Login with Twitter</a></li>
-                    <li><Link to="/signup" className="navbar-link"> Sign Up</Link></li>
+                    <li><a className="navbar-link" href="/auth/facebook">Login with Facebook</a></li>
+                    <li><Link to="/login"  className="navbar-link">Login with e-Mail</Link></li>
+                    <li><Link to="/signup" className="navbar-link">Register</Link></li>
                   </ul>
                   :
                   <ul className="nav navbar-nav navbar-right">

@@ -13,13 +13,14 @@ var morgan = require('morgan');
 var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var cookieParser = require('cookie-parser');
 
 var mongoose = require('mongoose');
 //Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead
 //http://mongoosejs.com/docs/promises.html
 // Use native promises
 mongoose.Promise = global.Promise;
-    
+
 var session = require('express-session');
 var mongoStore = require('connect-mongo')(session);
 var passport = require('passport');
@@ -94,6 +95,7 @@ app.locals.pretty = true // indent produces HTML for clarity
 app.use(express.static(path.resolve(path.join(__dirname,".."), 'public'))); // this above session/cookie middlewares prevent create for static files
 app.use(favicon(__dirname+'/../public/favicon.ico'));
 
+//app.use(cookieParser()); // read cookies (needed for auth)
 
 
 app.use(session({

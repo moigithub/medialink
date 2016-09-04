@@ -2,7 +2,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 
-class SignUpForm extends Component {
+class LoginForm extends Component {
     constructor(props){
         super(props);
         
@@ -36,13 +36,7 @@ class SignUpForm extends Component {
         return (
             <div className="container">
                 <h3>Register</h3>
-                <form action="/auth/signup">
-                    <div className="form-group row">
-                        <label className="control-label col-sm-2" htmlFor="name">Name</label>
-                        <div className="col-sm-10">
-                            <input type="text" name="name" value={this.state.name} className="form-control" onChange={this.handleChange} id="name" placeholder="Enter your name"/>
-                        </div>
-                     </div>
+                <form action="/auth/login">
                     <div className="form-group row">
                         <label className="control-label col-sm-2" htmlFor="email">e-Mail</label>
                         <div className="col-sm-10">
@@ -53,12 +47,6 @@ class SignUpForm extends Component {
                         <label className="control-label col-sm-2" htmlFor="password">Password</label>
                         <div className="col-sm-10">
                             <input type="text" name="password" value={this.state.password} className="form-control" onChange={this.handleChange} id="password" placeholder="Enter your password"/>
-                        </div>
-                     </div>
-                    <div className="form-group row">
-                        <label className="control-label col-sm-2" htmlFor="confirm">Confirm password</label>
-                        <div className="col-sm-10">
-                            <input type="text" name="confirm" value={this.state.confirm} className="form-control" onChange={this.handleChange} id="confirm" placeholder="re-enter password"/>
                         </div>
                      </div>
                      <button type="submit" onClick={this.submitData} className="btn btn-success pull-right">Submit</button>
@@ -82,4 +70,4 @@ function mapDispatchToProps(dispatch){
  q guarde las categ-filtros
  en el store  (component state ?? )
 */
-export default connect(null, mapDispatchToProps)(SignUpForm);
+export default connect(null, mapDispatchToProps)(LoginForm);

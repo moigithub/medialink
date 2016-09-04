@@ -11,6 +11,7 @@ import VerMedia from './VerMedia';
 import AddMediaForm from './Form';
 import Wrapper from './Wrapper';
 import SignUpForm from './SignUpForm';
+import LoginForm from './LoginForm';
 
 // const Provider = require('react-redux').Provider
 import { Provider } from 'react-redux';
@@ -79,6 +80,7 @@ ReactDOM.render( (
             <Route path="vermedia(/:mediaName)(/:mediaLink)" component={VerMedia} />
             <Route path="newMedia" component={AddMediaForm}   onEnter={requireAuth}  />
             <Route path="signup" component={SignUpForm} />
+            <Route path="login" component={LoginForm} />
         </Route>
       </Router>
     </Provider>)
