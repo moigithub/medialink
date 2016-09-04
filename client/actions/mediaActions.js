@@ -1,6 +1,7 @@
 /*global Headers, fetch*/
 'use strict';
 import { ADD_MEDIA, ADD_MEDIA_LINK } from './actionConstants';
+import * as actions from './actions/mediaActions';
 
 
 require('es6-promise').polyfill();
@@ -130,6 +131,65 @@ export function PostFormAsync(formData, userId){
                 //console.log("success",data);
                 dispatch(AddMedia(data));
                 toastr.info(formData.title + ' added');
+            })
+            .catch(function(err){
+       //         console.error("error",err);
+                toastr.error('Error: '+err);
+            });
+    }
+}
+
+
+///////login
+
+export function PostLoginFormAsync(formData){
+    return function(dispatch){
+
+        let opts = { 
+            method: 'POST' , 
+        //    credentials: 'include',
+            body: JSON.stringify(formData), 
+            headers: new Headers({
+                'Content-Type': 'application/json; charset=utf-8',   //'x-www-form-urlencoded', <-- necesita new Formdata()+append  ....creo
+                Accept : "application/json"   //es igual que datatype:'json' en jquery
+            })        
+        };
+
+        return fetch('/api/login', opts) //es igual que datatype:'json'
+            .then(response => response.ok ? response.json() : response.json().then(err => Promise.reject(err)))
+            .then(function(data){
+                //console.log("success",data);
+//                dispatch(AddMedia(data));
+                toastr.info( ' loggged');
+            })
+            .catch(function(err){
+       //         console.error("error",err);
+                toastr.error('Error: '+err);
+            });
+    }
+}
+
+///signup
+
+export function PostSignUpFormAsync(formData){
+    return function(dispatch){
+
+        let opts = { 
+            method: 'POST' , 
+        //    credentials: 'include',
+            body: JSON.stringify(formData), 
+            headers: new Headers({
+                'Content-Type': 'application/json; charset=utf-8',   //'x-www-form-urlencoded', <-- necesita new Formdata()+append  ....creo
+                Accept : "application/json"   //es igual que datatype:'json' en jquery
+            })        
+        };
+
+        return fetch('/api/signup', opts) //es igual que datatype:'json'
+            .then(response => response.ok ? response.json() : response.json().then(err => Promise.reject(err)))
+            .then(function(data){
+                //console.log("success",data);
+//                dispatch(AddMedia(data));
+                toastr.info( ' loggged');
             })
             .catch(function(err){
        //         console.error("error",err);

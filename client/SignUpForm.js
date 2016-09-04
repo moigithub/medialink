@@ -1,6 +1,7 @@
 'use strict';
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import * as actions from './actions/mediaActions';
 
 class SignUpForm extends Component {
     constructor(props){
@@ -72,7 +73,7 @@ class SignUpForm extends Component {
 function mapDispatchToProps(dispatch){
     return {
 //        postForm: (formData)=>{dispatch(actions.PostFormAsync(formData, auth.getCurrentUser().userId));}
-        postForm: (formDate)=>{console.log("posting dataaaaaa signup form");}
+        postForm: (formData)=>{dispatch(actions.PostSignUpFormAsync(formData));}
     };
 }
 

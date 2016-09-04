@@ -1,6 +1,7 @@
 'use strict';
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import * as actions from './actions/mediaActions';
 
 class LoginForm extends Component {
     constructor(props){
@@ -35,7 +36,7 @@ class LoginForm extends Component {
     render(){
         return (
             <div className="container">
-                <h3>Register</h3>
+                <h3>Log In</h3>
                 <form action="/auth/login">
                     <div className="form-group row">
                         <label className="control-label col-sm-2" htmlFor="email">e-Mail</label>
@@ -60,7 +61,7 @@ class LoginForm extends Component {
 function mapDispatchToProps(dispatch){
     return {
 //        postForm: (formData)=>{dispatch(actions.PostFormAsync(formData, auth.getCurrentUser().userId));}
-        postForm: (formDate)=>{console.log("posting dataaaaaa signup form");}
+        postForm: (formData)=>{dispatch(actions.PostLoginFormAsync(formData));}
     };
 }
 
