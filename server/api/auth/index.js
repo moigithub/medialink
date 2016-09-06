@@ -37,7 +37,11 @@ passport.use('local-signup', new LocalStrategy({
     passReqToCallback : true // allows us to pass back the entire request to the callback
 },
 function(req, email, password, done) {
-
+    
+    
+    
+    
+console.log("local signup", email);
     // asynchronous
     // User.findOne wont fire unless data is sent back
     process.nextTick(function() {
@@ -51,9 +55,12 @@ function(req, email, password, done) {
 
         // check to see if theres already a user with that email
         if (user) {
+console.log("creando user, ya existe", email);            
             return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
         } else {
-
+            
+            
+console.log("creando user", email);
             // if there is no user with that email
             // create the user
             var newUser            = new User();
@@ -93,21 +100,32 @@ passport.use('local-login', new LocalStrategy({
 },
 function(req, email, password, done) { // callback with email and password from our form
 
+
+
+
+
+console.log("locallogin", email);
     // find a user whose email is the same as the forms email
     // we are checking to see if the user trying to login already exists
     User.findOne({ 'local.email' :  email }, function(err, user) {
         // if there are any errors, return the error before anything else
-        if (err)
+        if (err){
+            console.log("error on local login", err);
             return done(err);
+        }
 
         // if no user is found, return the message
-        if (!user)
+        if (!user){
+            console.log("erro no user found", email);
             return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
-
+        }
+        
         // if the user is found but the password is wrong
-        if (!user.validPassword(password))
+        if (!user.validPassword(password)) {
+            console.log("no pass")
             return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
-
+        }
+console.log("booooo login");
         // all is well, return successful user
         return done(null, user);
     });
@@ -257,13 +275,13 @@ router
     
   .post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/', // redirect to the my watch list
-        failureRedirect : '/', // redirect back to the signup page if there is an error
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }))
 
   .post('/login', passport.authenticate('local-login', {
         successRedirect : '/', // redirect to the my watch list
-        failureRedirect : '/', // redirect back to the signup page if there is an error
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }))
 

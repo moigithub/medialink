@@ -14,6 +14,7 @@ var favicon = require('serve-favicon');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var cookieParser = require('cookie-parser');
+var flash = require('connect-flash');
 
 var mongoose = require('mongoose');
 //Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead
@@ -105,7 +106,7 @@ app.use(session({
   store: new mongoStore({mongooseConnection: mongoose.connection, db: 'mediateca'})
 }));
 
-
+app.use(flash());
 
 //form process
 app.use(bodyParser.urlencoded({extended:true}));
@@ -155,7 +156,12 @@ app.route('/:url(api|auth|components)/*').get(function(req,res){
 */
 
 //all others resources should redirect to the index.html
-
+app.get("/login", function(req,res){
+  res.render('login', {messages: req.flash("loginMessage")});
+})
+app.get("/signup", function(req,res){
+  res.render('signup', {messages: req.flash("signupMessage")});
+})
 
 app.route('*').get(function(req,res){
 

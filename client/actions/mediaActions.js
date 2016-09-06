@@ -1,7 +1,6 @@
 /*global Headers, fetch*/
 'use strict';
 import { ADD_MEDIA, ADD_MEDIA_LINK } from './actionConstants';
-import * as actions from './actions/mediaActions';
 
 
 require('es6-promise').polyfill();
@@ -155,7 +154,7 @@ export function PostLoginFormAsync(formData){
             })        
         };
 
-        return fetch('/api/login', opts) //es igual que datatype:'json'
+        return fetch('/auth/login', opts) //es igual que datatype:'json'
             .then(response => response.ok ? response.json() : response.json().then(err => Promise.reject(err)))
             .then(function(data){
                 //console.log("success",data);
@@ -163,7 +162,7 @@ export function PostLoginFormAsync(formData){
                 toastr.info( ' loggged');
             })
             .catch(function(err){
-       //         console.error("error",err);
+                console.error("error",err);
                 toastr.error('Error: '+err);
             });
     }
@@ -184,16 +183,19 @@ export function PostSignUpFormAsync(formData){
             })        
         };
 
-        return fetch('/api/signup', opts) //es igual que datatype:'json'
-            .then(response => response.ok ? response.json() : response.json().then(err => Promise.reject(err)))
+        return fetch('/auth/signup', opts) //es igual que datatype:'json'
+            .then(response => {
+                console.log("signup fetch response",response);
+ //               response.ok ? response.json() : response.json().then(err => Promise.reject(err))
+            })
             .then(function(data){
                 //console.log("success",data);
 //                dispatch(AddMedia(data));
                 toastr.info( ' loggged');
             })
-            .catch(function(err){
-       //         console.error("error",err);
+/*           .catch(function(err){
+                console.error("error",err);
                 toastr.error('Error: '+err);
             });
-    }
+ */   }
 }

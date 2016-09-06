@@ -38,8 +38,8 @@ export default class MenuBar extends Component {
                   <ul className="nav navbar-nav navbar-right">
                     <li><a className="navbar-link" href="/auth/twitter">Login with Twitter</a></li>
                     <li><a className="navbar-link" href="/auth/facebook">Login with Facebook</a></li>
-                    <li><Link to="/login"  className="navbar-link">Login with e-Mail</Link></li>
-                    <li><Link to="/signup" className="navbar-link">Register</Link></li>
+                    <li><a href="/login"  className="navbar-link">Login with e-Mail</a></li>
+                    <li><a href="/signup" className="navbar-link">Register</a></li>
                   </ul>
                   :
                   <ul className="nav navbar-nav navbar-right">

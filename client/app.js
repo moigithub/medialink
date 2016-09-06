@@ -72,15 +72,15 @@ function requireAuth(nextState, replace) {
 ReactDOM.render( (
     <Provider store={Store}>
       <Router history={browserHistory}>
-        <Route path="/" component={Wrapper}>
+        <Route path="/"  component={Wrapper}>
             <IndexRoute  component={Main}/>
+            <Route path="login"  />
+            <Route path="signup"  />
             <Route path="capitulos" component={Main} />
             <Route path="media(/:userid)" component={MediaList} />
             <Route path="mediainfo(/:mediaName)" component={MediaInfo} />
             <Route path="vermedia(/:mediaName)(/:mediaLink)" component={VerMedia} />
             <Route path="newMedia" component={AddMediaForm}   onEnter={requireAuth}  />
-            <Route path="signup" component={SignUpForm} />
-            <Route path="login" component={LoginForm} />
         </Route>
       </Router>
     </Provider>)
@@ -89,6 +89,12 @@ ReactDOM.render( (
 
 //ReactDOM.render(<AddMediaForm></AddMediaForm>, document.getElementById("app"));
 /*
+
+            <Route path="signup" component={SignUpForm} />
+            <Route path="login" component={LoginForm} />
+
+
+
         <IndexRoute  component={ImageList}/>
         <Route path="Picts/(:filter)" component={ImageList}  onEnter={requireAuth} />
 <Redirect from="*" to="/" />

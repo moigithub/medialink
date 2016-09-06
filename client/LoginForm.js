@@ -9,9 +9,7 @@ class LoginForm extends Component {
         
         this.state={
             email:'',
-            name:'',
-            password:'',
-            confirm:''
+            password:''
         };
         
         this.handleChange = this.handleChange.bind(this);
