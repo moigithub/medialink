@@ -15,6 +15,7 @@ class VerMedia extends Component {
     }
     
     componentWillReceiveProps(nextProps){
+        // set the current media link on the video player
         console.log("willreceiveProps",this.props, "next:",nextProps);
         if(!nextProps.media.error) {
             let mirrors = getMirrors(nextProps.media, nextProps.mediaLink) ||[];
@@ -28,8 +29,9 @@ class VerMedia extends Component {
     }
     
     componentWillMount(){
+        // set the current media link on the video player
         console.log("vermedia comp.Will mount", this.props);
-        let mirrors = getMirrors(this.props.media, this.props.mediaLink) ||[];
+        let mirrors = getMirrors(this.props.media, this.props.mediaLink) || [];
         console.log("vermedia mirrors", mirrors);
         if(mirrors.length>0 && this.state.currentUrl==='')
             this.setState({currentUrl: mirrors[0].link});
@@ -42,8 +44,10 @@ class VerMedia extends Component {
     
     render(){
         let {media, mediaLink} = this.props;
-        let mirrors = getMirrors(media, mediaLink) ||[];
+        //let mirrors = getMirrors(media, mediaLink) ||[];
+        let capitulos = getCapitulos(media, mediaLink) || [];
         //console.log("render mirror",mirrors);
+        console.log("verMedia, capitulos",capitulos);
         return (    
             <div className="list container">
                 {media && media.title  && <div className="row">
@@ -60,15 +64,22 @@ class VerMedia extends Component {
                         </div>
                     </div>
                     <div className="col-xs-7 col-sm-8 col-lg-9">
-                        <h3>{mediaLink}</h3>
-                        {mirrors.length && <div className="embed-responsive embed-responsive-4by3">
-                          <iframe className="embed-responsive-item" ref="visor" src={this.state.currentUrl}></iframe>
+                        {media.capitulos.length && <div id="mediaContent">
+                          <h3>{mediaLink}
+                            <div className="prev-next">
+                                <span>{capitulos[0] && <Link to={"/verMedia/"+media.title+"/"+capitulos[0].nombre}>Previous</Link>}</span>
+                                <span>{capitulos[2] && <Link to={"/verMedia/"+media.title+"/"+capitulos[2].nombre}>Next</Link>}</span>
+                            </div>
+                          </h3>
+                          <div className="embed-responsive embed-responsive-4by3">
+                               <iframe className="embed-responsive-item" ref="visor" src={this.state.currentUrl}></iframe>
+                          </div>
                         </div>
                         }
                         <div id="listaCapitulos">
                             <h3>Mirror List</h3>
-                            {!!mirrors && <ul className="list-group">
-                                {mirrors.map((mirror,i)=>(
+                            {!!capitulos[1].mirrors.length && <ul className="list-group">
+                                {capitulos[1].mirrors.map((mirror,i)=>(
                                     <li onClick={this.setMirrorUrl.bind(this,mirror.link)} key={"mirror"+i} className="list-group-item list-group-item-info">{mirror.link}
                                     &nbsp; - posted by: <span className="user">{mirror.userID}</span> 
                                     <button className="btn btn-danger btn-xs pull-right">Report broken</button>
@@ -110,6 +121,40 @@ function filter(medias, mediaName){
     
     return medias;  // TODO:: return empty media ???
 }
+
+function getCapitulos(theMedia, mediaLink){
+    console.log("getCapitulos media ",theMedia, "link", mediaLink);
+    //devuelve un array de 3 elementos [anterior, actual, siguiente]
+    //si algun elemento no existe.. null
+    if(theMedia.error) return false;
+    var elCapitulo= theMedia.capitulos.findIndex(capitulo => capitulo.nombre === mediaLink);
+    console.log("getCapitulos capitulo ",elCapitulo, "len",theMedia.capitulos.length-1);
+    if(elCapitulo===-1) {
+        console.log("getCapitulos todo null");
+        return [null,null,null];
+    } else if(elCapitulo === 0) {
+        if(theMedia.capitulos.length>1){
+            console.log("getCapitulos x,a,b");
+            return [null, theMedia.capitulos[0], theMedia.capitulos[1]];
+        }
+            console.log("getCapitulos x,a,x");
+        return [null, theMedia.capitulos[0], null];
+    } else if(elCapitulo === theMedia.capitulos.length-1) {
+        console.log("getCapitulos acanga");
+        if(theMedia.capitulos.length>1){
+            console.log("getCapitulos a,b,x");
+            return [theMedia.capitulos[elCapitulo-1], theMedia.capitulos[elCapitulo], null];
+        }
+        console.log("getCapitulos x,a,x");
+        return [null, theMedia.capitulos[elCapitulo], null];
+    } else if(elCapitulo >0 && elCapitulo< theMedia.capitulos.length-1){
+            console.log("getCapitulos a,b,c");
+        return [theMedia.capitulos[elCapitulo-1], theMedia.capitulos[elCapitulo], theMedia.capitulos[elCapitulo+1]];
+    }
+    console.log("getCapitulos nada");
+    return false;
+}
+
 
 function getMirrors(theMedia, mediaLink){
     if(theMedia.error) return false;
