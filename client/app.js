@@ -35,7 +35,12 @@ const initialState = {
     categ: ["Accion", "Suspenso", "Drama", "Sci-Fi"],
     tag  : ["transformation", "magic", "bones", "ghost"],
     masVistos: data,
-    masVotados: data
+    masVotados: data,
+    
+    /// app filter status
+    azFilter:[],
+    categFilter:[],
+    mediaTypeFilter:[]
 };
 
 const Store = configureStore(initialState);

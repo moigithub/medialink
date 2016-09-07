@@ -11,8 +11,18 @@ import { ADD_MEDIA,
          ADD_CATEG, 
          ADD_MEDIA_TYPE, 
          ADD_MAS_VISTOS, 
-         ADD_MAS_VOTADOS 
-    
+         ADD_MAS_VOTADOS,
+         AZ_FILTER_ADD,
+         AZ_FILTER_REM,
+         AZ_FILTER_CLEAR,
+         
+         CATEG_FILTER_ADD,
+         CATEG_FILTER_REM,
+         CATEG_FILTER_CLEAR,
+         
+         MEDIA_TYPE_FILTER_ADD,
+         MEDIA_TYPE_FILTER_REM,
+         MEDIA_TYPE_FILTER_CLEAR
 } from './actions/actionConstants';
      
 
@@ -54,7 +64,7 @@ function tagReducer(state=[], action){
 function mediaTypeReducer(state=[], action){
     switch(action.type){
         case ADD_MEDIA_TYPE:
-            return [...state, action.tag];
+            return [...state, action.mediaType];
     }
     return state;
 }
@@ -62,7 +72,7 @@ function mediaTypeReducer(state=[], action){
 function masVistosReducer(state=[], action){
     switch(action.type){
         case ADD_MAS_VISTOS:
-            return [...state, action.tag];
+            return [...state, action.masVistos];
     }
     return state;
 }
@@ -70,10 +80,50 @@ function masVistosReducer(state=[], action){
 function masVotadosReducer(state=[], action){
     switch(action.type){
         case ADD_MAS_VISTOS:
-            return [...state, action.tag];
+            return [...state, action.masVotados];
     }
     return state;
 }
+
+///////////// APP FILTER STATUS
+
+function AZFilterReducer(state=[], action){
+    switch(action.type){
+        case AZ_FILTER_ADD:
+            return [...state, action.filter];
+        case AZ_FILTER_REM:
+            return state.filter(x=>x!==action.filter);
+        case AZ_FILTER_CLEAR:
+            return [];
+    }
+    return state;
+}
+
+function categFilterReducer(state=[], action){
+    switch(action.type){
+        case CATEG_FILTER_ADD:
+            return [...state, action.filter];
+        case CATEG_FILTER_REM:
+            return state.filter(x=>x!==action.filter);
+        case CATEG_FILTER_CLEAR:
+            return [];
+    }
+    return state;
+}
+
+function mediaTypeFilterReducer(state=[], action){
+    switch(action.type){
+        case MEDIA_TYPE_FILTER_ADD:
+            return [...state, action.filter];
+        case MEDIA_TYPE_FILTER_REM:
+            return state.filter(x=>x!==action.filter);
+        case MEDIA_TYPE_FILTER_CLEAR:
+            return [];
+    }
+    return state;
+}
+
+
 
 
 export default function configureStore(initialState){
@@ -85,7 +135,11 @@ export default function configureStore(initialState){
              "categ":categReducer, 
              'mediaType': mediaTypeReducer,
              'masVistos': masVistosReducer,
-             'masVotados': masVotadosReducer
+             'masVotados': masVotadosReducer,
+             
+             'azFilter':AZFilterReducer,
+             'categFilter':categFilterReducer,
+             'mediaTypeFilter':mediaTypeFilterReducer,
             });
     return createStoreWithThunk(allReducers, initialState);
 }
