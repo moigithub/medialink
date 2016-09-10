@@ -12,8 +12,7 @@ import { ADD_MEDIA,
          ADD_MEDIA_TYPE, 
          ADD_MAS_VISTOS, 
          ADD_MAS_VOTADOS,
-         AZ_FILTER_ADD,
-         AZ_FILTER_REM,
+         AZ_FILTER_TOGGLE,
          AZ_FILTER_CLEAR,
          
          CATEG_FILTER_ADD,
@@ -89,10 +88,12 @@ function masVotadosReducer(state=[], action){
 
 function AZFilterReducer(state=[], action){
     switch(action.type){
-        case AZ_FILTER_ADD:
-            return [...state, action.filter];
-        case AZ_FILTER_REM:
-            return state.filter(x=>x!==action.filter);
+        case AZ_FILTER_TOGGLE:
+            if(state.indexOf(action.filter)===-1){
+                return [...state, action.filter];
+            } else {
+                return state.filter(x=>x!==action.filter);
+            }
         case AZ_FILTER_CLEAR:
             return [];
     }

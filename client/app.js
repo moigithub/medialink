@@ -1,5 +1,5 @@
 'use strict';
-
+/*global localStorage*/
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -25,6 +25,8 @@ import configureStore from './Store.js';
 ///// STORE ///
 import {data,capitulos} from './seed';
 
+import './styles/styles.css';
+
 const initialState = {
     media:[
  //       {_id:1, title:'mono', imageURL:'http://i2.asntown.net/ha/Animals/finger-monkey/finger_monkeys_640_04.jpg', likesCount:4, userId:1},
@@ -38,7 +40,7 @@ const initialState = {
     masVotados: data,
     
     /// app filter status
-    azFilter:[],
+    azFilter: JSON.parse(localStorage.azFilter||"[]"),
     categFilter:[],
     mediaTypeFilter:[]
 };

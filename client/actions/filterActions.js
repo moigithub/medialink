@@ -1,6 +1,7 @@
+/*global localStorage*/
 
-import { AZ_FILTER_ADD,
-         AZ_FILTER_REM,
+import { AZ_FILTER_TOGGLE,
+         
          AZ_FILTER_CLEAR ,
     
          CATEG_FILTER_ADD,
@@ -14,13 +15,10 @@ import { AZ_FILTER_ADD,
 } from './actionConstants';
 
 /////////////////////////////////  AZ FILTER
-export const AddAZFilter=(filter)=>{
-    return {type: AZ_FILTER_ADD, tag:filter};
+export const toggleAZFilter=(filter)=>{
+    return {type: AZ_FILTER_TOGGLE, filter:filter};
 };
 
-export const RemAZFilter=(filter)=>{
-    return {type: AZ_FILTER_REM, tag:filter};
-};
 
 export const ClearAZFilter=()=>{
     return {type: AZ_FILTER_CLEAR };
@@ -29,11 +27,11 @@ export const ClearAZFilter=()=>{
 /////////////////////////////// CATEG FILTER
 
 export const AddCategFilter=(filter)=>{
-    return {type: CATEG_FILTER_ADD, tag:filter};
+    return {type: CATEG_FILTER_ADD, filter:filter};
 };
 
 export const RemCategFilter=(filter)=>{
-    return {type: CATEG_FILTER_REM, tag:filter};
+    return {type: CATEG_FILTER_REM, filter:filter};
 };
 
 export const ClearCategFilter=()=>{
@@ -43,14 +41,43 @@ export const ClearCategFilter=()=>{
 /////////////////////////////// MEDIA TYPE FILTER
 
 export const AddMediaTypeFilter=(filter)=>{
-    return {type: MEDIA_TYPE_FILTER_ADD, tag:filter};
+    return {type: MEDIA_TYPE_FILTER_ADD, filter:filter};
 };
 
 export const RemMediaTypeFilter=(filter)=>{
-    return {type: MEDIA_TYPE_FILTER_REM, tag:filter};
+    return {type: MEDIA_TYPE_FILTER_REM, filter:filter};
 };
 
 export const ClearMediaTypeFilter=()=>{
     return {type: MEDIA_TYPE_FILTER_CLEAR };
 };
 
+////////////////
+// actions para guardarlo en localstorage, pa q no se pierda cuando refresh page
+
+export function saveSettingsLocal(azFilter){
+    console.log("saveSettingsLocal fiteractions", azFilter);
+    if(azFilter!==null){         
+        localStorage.azFilter = JSON.stringify(azFilter);
+    } else { delete localStorage.azFilter; }
+    
+    
+}
+
+
+export function ClearAZFilterAsync(azFilter){
+    console.log("clear async");
+    return function(dispatch, getState){
+        delete localStorage.azFilter;
+        dispatch(ClearAZFilter());
+    }
+};
+
+export function toggleAZFilterAsync(azFilter){
+    console.log("toggle async");
+    return function(dispatch, getState){
+        dispatch(toggleAZFilter(azFilter));
+        
+        saveSettingsLocal(getState().azFilter);
+    }
+};

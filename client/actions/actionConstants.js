@@ -8,8 +8,7 @@ export const ADD_MAS_VISTOS = 'add_mas_vistos';
 export const ADD_MAS_VOTADOS = 'add_mas_votados';
 export const ADD_MEDIA_LINK = 'ADD_MEDIA_link';
 
-export const AZ_FILTER_ADD ="AZ-FILTER-add";
-export const AZ_FILTER_REM ="AZ-FILTER-rem";
+export const AZ_FILTER_TOGGLE ="AZ-FILTER-toggle";
 export const AZ_FILTER_CLEAR = "AZ_FILTER_CLEAR";
 
 export const CATEG_FILTER_ADD = "CATEG_FILTER-add";
