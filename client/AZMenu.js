@@ -45,7 +45,7 @@ class AZMenu extends Component {
                                 onChange={this.handleChange.bind(this,b)}
 //                                onChange={()=>alert("change")}
                                 />
-                            {b}
+                            {b }
                             </label>
                       ))
                       }

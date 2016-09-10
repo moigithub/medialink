@@ -15,12 +15,10 @@ import { ADD_MEDIA,
          AZ_FILTER_TOGGLE,
          AZ_FILTER_CLEAR,
          
-         CATEG_FILTER_ADD,
-         CATEG_FILTER_REM,
+         CATEG_FILTER_TOGGLE,
          CATEG_FILTER_CLEAR,
          
-         MEDIA_TYPE_FILTER_ADD,
-         MEDIA_TYPE_FILTER_REM,
+         MEDIA_TYPE_FILTER_TOGGLE,
          MEDIA_TYPE_FILTER_CLEAR
 } from './actions/actionConstants';
      
@@ -102,10 +100,12 @@ function AZFilterReducer(state=[], action){
 
 function categFilterReducer(state=[], action){
     switch(action.type){
-        case CATEG_FILTER_ADD:
-            return [...state, action.filter];
-        case CATEG_FILTER_REM:
-            return state.filter(x=>x!==action.filter);
+        case CATEG_FILTER_TOGGLE:
+            if(state.indexOf(action.filter)===-1){
+                return [...state, action.filter];
+            } else {
+                return state.filter(x=>x!==action.filter);
+            }
         case CATEG_FILTER_CLEAR:
             return [];
     }
@@ -114,10 +114,12 @@ function categFilterReducer(state=[], action){
 
 function mediaTypeFilterReducer(state=[], action){
     switch(action.type){
-        case MEDIA_TYPE_FILTER_ADD:
-            return [...state, action.filter];
-        case MEDIA_TYPE_FILTER_REM:
-            return state.filter(x=>x!==action.filter);
+        case MEDIA_TYPE_FILTER_TOGGLE:
+            if(state.indexOf(action.filter)===-1){
+                return [...state, action.filter];
+            } else {
+                return state.filter(x=>x!==action.filter);
+            }
         case MEDIA_TYPE_FILTER_CLEAR:
             return [];
     }

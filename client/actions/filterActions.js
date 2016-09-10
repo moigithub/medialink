@@ -4,12 +4,10 @@ import { AZ_FILTER_TOGGLE,
          
          AZ_FILTER_CLEAR ,
     
-         CATEG_FILTER_ADD,
-         CATEG_FILTER_REM,
+         CATEG_FILTER_TOGGLE,
          CATEG_FILTER_CLEAR,
         
-         MEDIA_TYPE_FILTER_ADD,
-         MEDIA_TYPE_FILTER_REM,
+         MEDIA_TYPE_FILTER_TOGGLE,
          MEDIA_TYPE_FILTER_CLEAR, 
     
 } from './actionConstants';
@@ -26,13 +24,10 @@ export const ClearAZFilter=()=>{
 
 /////////////////////////////// CATEG FILTER
 
-export const AddCategFilter=(filter)=>{
-    return {type: CATEG_FILTER_ADD, filter:filter};
+export const ToggleCategFilter=(filter)=>{
+    return {type: CATEG_FILTER_TOGGLE, filter:filter};
 };
 
-export const RemCategFilter=(filter)=>{
-    return {type: CATEG_FILTER_REM, filter:filter};
-};
 
 export const ClearCategFilter=()=>{
     return {type: CATEG_FILTER_CLEAR };
@@ -40,13 +35,10 @@ export const ClearCategFilter=()=>{
 
 /////////////////////////////// MEDIA TYPE FILTER
 
-export const AddMediaTypeFilter=(filter)=>{
-    return {type: MEDIA_TYPE_FILTER_ADD, filter:filter};
+export const ToggleMediaTypeFilter=(filter)=>{
+    return {type: MEDIA_TYPE_FILTER_TOGGLE, filter:filter};
 };
 
-export const RemMediaTypeFilter=(filter)=>{
-    return {type: MEDIA_TYPE_FILTER_REM, filter:filter};
-};
 
 export const ClearMediaTypeFilter=()=>{
     return {type: MEDIA_TYPE_FILTER_CLEAR };
@@ -55,29 +47,59 @@ export const ClearMediaTypeFilter=()=>{
 ////////////////
 // actions para guardarlo en localstorage, pa q no se pierda cuando refresh page
 
-export function saveSettingsLocal(azFilter){
-    console.log("saveSettingsLocal fiteractions", azFilter);
-    if(azFilter!==null){         
-        localStorage.azFilter = JSON.stringify(azFilter);
-    } else { delete localStorage.azFilter; }
+export function saveSettingsLocal(type, Filter){
+    console.log("saveSettingsLocal fiteractions", Filter);
     
-    
+    switch (type){
+        case AZ_FILTER_TOGGLE:
+            if(Filter!==null){         
+                localStorage.azFilter = JSON.stringify(Filter);
+            } else { delete localStorage.azFilter; }
+            break;
+        case CATEG_FILTER_TOGGLE:
+            if(Filter!==null){         
+                localStorage.categFilter = JSON.stringify(Filter);
+            } else { delete localStorage.categFilter; }
+            break;
+        case MEDIA_TYPE_FILTER_TOGGLE:
+            break;
+    }
 }
 
 
-export function ClearAZFilterAsync(azFilter){
+/////////////////////// AZFILTER
+export function ClearAZFilterAsync(){
     console.log("clear async");
     return function(dispatch, getState){
-        delete localStorage.azFilter;
         dispatch(ClearAZFilter());
+        saveSettingsLocal(AZ_FILTER_TOGGLE, null);
     }
 };
 
-export function toggleAZFilterAsync(azFilter){
+export function toggleAZFilterAsync(Filter){
     console.log("toggle async");
     return function(dispatch, getState){
-        dispatch(toggleAZFilter(azFilter));
+        dispatch(toggleAZFilter(Filter));
         
-        saveSettingsLocal(getState().azFilter);
+        saveSettingsLocal(AZ_FILTER_TOGGLE, getState().azFilter);
     }
 };
+
+/////////////////////// CATEGFILTER
+export function ClearCategFilterAsync(){
+    console.log("clear async");
+    return function(dispatch, getState){
+        dispatch(ClearCategFilter());
+        saveSettingsLocal(CATEG_FILTER_TOGGLE, null);
+    }
+};
+
+export function toggleCategFilterAsync(Filter){
+    console.log("toggle async");
+    return function(dispatch, getState){
+        dispatch(ToggleCategFilter(Filter));
+        
+        saveSettingsLocal(CATEG_FILTER_TOGGLE, getState().categFilter);
+    }
+};
+
