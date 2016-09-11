@@ -62,6 +62,9 @@ export function saveSettingsLocal(type, Filter){
             } else { delete localStorage.categFilter; }
             break;
         case MEDIA_TYPE_FILTER_TOGGLE:
+            if(Filter!==null){         
+                localStorage.mediaTypeFilter = JSON.stringify(Filter);
+            } else { delete localStorage.mediaTypeFilter; }
             break;
     }
 }
@@ -100,6 +103,24 @@ export function toggleCategFilterAsync(Filter){
         dispatch(ToggleCategFilter(Filter));
         
         saveSettingsLocal(CATEG_FILTER_TOGGLE, getState().categFilter);
+    }
+};
+
+/////////////////////// MEDIATYPE FILTER
+export function ClearMediaTypeFilterAsync(){
+    console.log("clear async");
+    return function(dispatch, getState){
+        dispatch(ClearMediaTypeFilter());
+        saveSettingsLocal(MEDIA_TYPE_FILTER_TOGGLE, null);
+    }
+};
+
+export function toggleMediaTypeFilterAsync(Filter){
+    console.log("toggle async");
+    return function(dispatch, getState){
+        dispatch(ToggleMediaTypeFilter(Filter));
+        
+        saveSettingsLocal(MEDIA_TYPE_FILTER_TOGGLE, getState().mediaTypeFilter);
     }
 };
 

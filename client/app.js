@@ -42,7 +42,7 @@ const initialState = {
     /// app filter status
     azFilter: JSON.parse(localStorage.azFilter||"[]"),
     categFilter:JSON.parse(localStorage.categFilter||"[]"),
-    mediaTypeFilter:[]
+    mediaTypeFilter:JSON.parse(localStorage.mediaTypeFilter||"[]")
 };
 
 const Store = configureStore(initialState);
