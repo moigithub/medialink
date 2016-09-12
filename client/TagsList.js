@@ -17,7 +17,7 @@ import {connect} from 'react-redux';
                 <ul className="list-group">
                     {this.props.list.map( (link,i)=>(
                         <li key={"tag"+i}>
-                            <button onClick={()=>this.props.changed(link)}>{link}</button>
+                            <button onClick={()=>this.props.searchBy(link)}>{link}</button>
                         </li>
                     ))}
                 </ul>
@@ -27,7 +27,7 @@ import {connect} from 'react-redux';
 }
 TagsList.propTypes ={
     list: PropTypes.arrayOf(PropTypes.string),
-    changed: PropTypes.func.isRequired
+    searchBy: PropTypes.func
 }
 
 //helpers

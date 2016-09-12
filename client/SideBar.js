@@ -9,13 +9,14 @@ export default class SideBar extends Component {
     constructor(props){
         super(props);
     }
+
     
     render(){
         return (
         <div className="sidebar">
             <MediaListGroup  changed={this.props.updateListByType}></MediaListGroup>
             <CategListGroup changed={this.props.updateListByCateg}></CategListGroup>
-            <TagList changed={this.props.updateListByTag}></TagList>
+            <TagList searchBy={this.props.updateListByTag}></TagList>
         </div>
         );
     }

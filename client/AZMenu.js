@@ -3,6 +3,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from './actions/filterActions';
+import SearchMediaForm from './SearchMediaForm';
 
 class AZMenu extends Component {
     constructor(props){
@@ -51,12 +52,7 @@ class AZMenu extends Component {
                       }
                       <a className="btn btn-primary btn-lg" href="#" onClick = {this.clearButtons} id="resetalphanum"> Reset</a>
                       
-                      <form className="form-inline pull-xs-right" id="searchForm">
-                        <div className="form-group">
-                          <input type="text" className="form-control" placeholder="Search"/>
-                          <button type="submit" className="btn btn-outline-success">Submit</button>
-                        </div>
-                      </form>
+                      <SearchMediaForm />
                   
                       
                     </div>
