@@ -122,6 +122,13 @@ router.post('/',  function(req, res) {
     };
     
     var mediaData = Object.assign({}, obj, req.body);
+    // split categories  categories: 'accion belico pg13',
+    // split tags         tags: 'barcos militar epidemia',
+    mediaData.title = capitalize(mediaData.title);
+    mediaData.categories = mediaData.categories.map(s=>capitalize(s));
+    mediaData.tags = mediaData.tags.map(s=>capitalize(s));
+    
+    
     console.log("post image create",mediaData);
     Media.create(mediaData, function(err, media) {
         if(err) { return handleError(res, err); }
@@ -167,3 +174,11 @@ function handleError(res, err) {
 }
 
 module.exports = router;
+
+
+
+//////////// HELPERS
+function capitalize(str){
+  let clean = str.trim();
+  return clean[0].toUpperCase()+clean.substr(1)
+}
