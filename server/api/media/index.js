@@ -8,10 +8,58 @@ var Media = require('./media.model');
 
 // all media
 router.get('/', function(req, res) {
+  
+  /// TODO uses req.query to filter data
+  var azFilter = req.query.azFilter;
+  var categFilter = req.query.categ;
+  var mediaTypeFilter = req.query.mediatype;
+  
+  var searchObj = {};
+  if(azFilter) searchObj["firstChar"]=  { $in: azFilter.split(",") } ; // $in similar to or
+  // $in $OR
+  if(categFilter) searchObj["categories"]= { $all: categFilter.split(",") }; //) }; 
+  if(mediaTypeFilter) searchObj["mediaType"]= { $in: mediaTypeFilter.split(",") }; //) }; 
+  
+  console.log("filter params", searchObj, " query", req.query);
+  /*
     Media.find(function (err, media) {
         if(err) { return handleError(res, err); }
         return res.status(200).json(media);
     });
+    */
+    //yearSubstring: { $substr: [ "$quarter", 0, 2 ] },
+    
+    Media.aggregate([
+      { $project: {
+          firstChar: { $toUpper: { $substr: [ "$title", 0, 1 ] } },
+          title: 1,
+          imageUrl: 1,
+          dateAdded: 1,
+          userRate: 1,  //[{userid:'0', rating: 5}],
+          categories: 1, //['accion', 'suspenso'],
+          tags: 1, //['uno', 'dos'],
+          mediaType: 1,  //anime serie documental receta
+          likesCounter: 1,
+          viewCounter : 1,
+          description: 1,
+          capitulos: 1
+        }
+      },
+      { $match: searchObj
+  //    { 
+   //       firstChar:  { $in: azFilter },
+  //        categories: { $all: categFilter },
+  //        mediaType: mediaTypeFilter
+  //      }
+        
+      },
+      { $sort: { title: 1, dateAdded: -1}}
+      ], function(err, media){
+        if(err) { return handleError(res, err); }
+        //console.log(media);
+        return res.status(200).json(media);
+      
+    })
 });
 
 
@@ -74,7 +122,7 @@ router.post('/',  function(req, res) {
     };
     
     var mediaData = Object.assign({}, obj, req.body);
-    //console.log("post image create",mediaData);
+    console.log("post image create",mediaData);
     Media.create(mediaData, function(err, media) {
         if(err) { return handleError(res, err); }
         return res.status(201).json(media);

@@ -47,7 +47,9 @@ const initialState = {
 
 const Store = configureStore(initialState);
 // dispatch to get initial data from server
-Store.dispatch(getMediaDataFromServer());
+console.log("app Store", Store.getState());
+Store.dispatch(getMediaDataFromServer(Store.getState().azFilter, Store.getState().categFilter, Store.getState().mediaTypeFilter));
+
 Store.dispatch(getLatestMediaLinksDataFromServer());
 
 const Home = () => <h1>Hello from Home!</h1>

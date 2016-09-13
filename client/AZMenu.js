@@ -19,7 +19,7 @@ class AZMenu extends Component {
     }
     
     handleChange(key, event){
-        console.log("change status", event.target, "key", key);
+        //console.log("change status", event.target, "key", key);
 
         //dispatch store key toggle
         this.props.toggleButton(key);
@@ -29,7 +29,7 @@ class AZMenu extends Component {
 
     render(){
         let botones = generaBotones(this.props.azFilter);
-        console.log("boo azmenu", botones);
+        //console.log("boo azmenu", botones);
         return (
             <div className="container-fluid">
                 <div className="row">
@@ -75,7 +75,7 @@ function generaBotones(nuevoStatus){
 }
 
 function mapStateToProps(state, ownProps){
-    console.log("azMenu state",state, "ownprops",ownProps);
+    //console.log("azMenu state",state, "ownprops",ownProps);
     return {
         azFilter : state.azFilter  // es un array de letras activas: [0,4,A,C]
     };

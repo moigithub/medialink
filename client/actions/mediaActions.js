@@ -21,7 +21,7 @@ export const AddMediaLink=(media)=>{
 ///////////////////////////////////////////////////////////////////////////////
 /// async actions
 ///////////////////////////////////////////////////////////////////////////////
-export function getMediaDataFromServer() {
+export function getMediaDataFromServer(azFilter, categFilter, mediaTypeFilter) {
     return function(dispatch){
         /// http request
         let opts = { 
@@ -31,12 +31,28 @@ export function getMediaDataFromServer() {
                  Accept : "application/json; charset=utf-8"
             })        
         };
-
-
-        fetch('/api/media', opts ) //es igual que datatype:'json'
+        
+        var url = "",
+            params=[];
+            
+        //console.log("mediaactions",azFilter);
+        
+        if(Array.isArray(azFilter) && azFilter.length>0){
+            params.push( "azFilter="+azFilter.join(",") );
+        }
+        if(Array.isArray(categFilter) && categFilter.length>0){
+            params.push("categ="+categFilter.join(","));
+        }
+        if(Array.isArray(mediaTypeFilter) && mediaTypeFilter.length>0){
+            params.push("mediatype="+mediaTypeFilter.join(","));
+        }
+        
+        url = '/api/media?' + params.join("&");
+        
+        fetch(url, opts ) //es igual que datatype:'json'
             .then(response => response.ok ? response.json() : response.json().then(err => Promise.reject(err)))
             .then(function(data){
-                //console.log("success",data);
+                console.log("success",data);
                 data.forEach(function(media){
                     dispatch(AddMedia(media));
                 });
@@ -88,8 +104,8 @@ export function PostFormAsync(formData, userId){
             lastUpdated: new Date(),
             shouldUpdate: true,
             userRate:[],
-            categories: formData.mediacategs,
-            tags: formData.mediatags,
+            categories: (""+formData.mediacategs).split(","),
+            tags: (""+formData.mediatags).split(","),
             mediaType: formData.mediatype,
             likesCounter:0,
             viewCounter:0,
